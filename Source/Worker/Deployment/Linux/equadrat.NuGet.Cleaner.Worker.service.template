@@ -1,0 +1,13 @@
+[Unit]
+Description={{Description}}
+After=network.target
+
+[Service]
+Type=notify
+ExecStart={{ServiceRoot}}/{{ExecutableFile}}
+WorkingDirectory={{WorkDir}}
+User={{User}}
+Environment="DOTNET_ENVIRONMENT={{Environment}}"
+
+[Install]
+WantedBy=multi-user.target

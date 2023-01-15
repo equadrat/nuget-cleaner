@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFrameworks>$(ProjectTargetFrameworks)</TargetFrameworks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AssemblyName>equadrat.NuGet.Cleaner.Worker</AssemblyName>
+    <RootNamespace>e2</RootNamespace>
+
+    <UserSecretsId>dotnet-Worker-9ddca6bf-5995-45b1-8b06-98392d1ee05e</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE;JETBRAINS_ANNOTATIONS</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;JETBRAINS_ANNOTATIONS</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="equadrat.Framework.Core" Version="5.8.3" />
+    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="5.8.3" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.Configuration" Version="5.8.3" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.DependencyInjection" Version="5.8.3" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.Hosting" Version="5.8.3" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.Logging" Version="5.8.3" />
+    <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.0" />
+    <PackageReference Include="NuGet.Protocol" Version="6.4.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic.Interfaces\equadrat.NuGet.Cleaner.BusinessLogic.Interfaces.csproj" />
+    <ProjectReference Include="..\BusinessLogic\equadrat.NuGet.Cleaner.BusinessLogic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="*.log" />
+  </ItemGroup>
+
+  <Target Name="CopyFilesAfterPublish" AfterTargets="Publish" Condition="'$(PublishProfile)'=='Publish2FolderLinux'">
+    <ItemGroup>
+        <DeploymentFiles Include="$(ProjectDir)Deployment\Linux\**\*.*" />
+    </ItemGroup>
+    
+    <Copy SourceFiles="@(DeploymentFiles)" DestinationFolder="..\..\Stage\Publish\Linux\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{A5B50A14-1AE2-4B36-9B06-788B04BD65E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Subject", "Subject", "{40D881F5-BDC6-4C0D-A8E5-5527C1E1EDB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B8FA8DA9-95FF-4BD3-8A01-F3C24DF259D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "equadrat.NuGet.Cleaner.Worker", "Source\Worker\equadrat.NuGet.Cleaner.Worker.csproj", "{94310803-8F9D-41C6-B18E-046EFB565AC2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "equadrat.NuGet.Cleaner.UnitTests", "Tests\UnitTests\equadrat.NuGet.Cleaner.UnitTests.csproj", "{957D61AC-F1FE-472E-BE4E-9C90992F84A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "equadrat.NuGet.Cleaner.BusinessLogic.Interfaces", "Source\BusinessLogic.Interfaces\equadrat.NuGet.Cleaner.BusinessLogic.Interfaces.csproj", "{6D0C0F4E-3FCA-4DEE-A415-1F1EFD7C63DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "equadrat.NuGet.Cleaner.BusinessLogic", "Source\BusinessLogic\equadrat.NuGet.Cleaner.BusinessLogic.csproj", "{55C33433-BB59-44FE-94C4-9E016405465F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94310803-8F9D-41C6-B18E-046EFB565AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94310803-8F9D-41C6-B18E-046EFB565AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94310803-8F9D-41C6-B18E-046EFB565AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94310803-8F9D-41C6-B18E-046EFB565AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{957D61AC-F1FE-472E-BE4E-9C90992F84A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{957D61AC-F1FE-472E-BE4E-9C90992F84A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{957D61AC-F1FE-472E-BE4E-9C90992F84A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{957D61AC-F1FE-472E-BE4E-9C90992F84A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D0C0F4E-3FCA-4DEE-A415-1F1EFD7C63DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D0C0F4E-3FCA-4DEE-A415-1F1EFD7C63DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D0C0F4E-3FCA-4DEE-A415-1F1EFD7C63DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D0C0F4E-3FCA-4DEE-A415-1F1EFD7C63DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55C33433-BB59-44FE-94C4-9E016405465F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55C33433-BB59-44FE-94C4-9E016405465F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55C33433-BB59-44FE-94C4-9E016405465F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55C33433-BB59-44FE-94C4-9E016405465F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94310803-8F9D-41C6-B18E-046EFB565AC2} = {40D881F5-BDC6-4C0D-A8E5-5527C1E1EDB9}
+		{957D61AC-F1FE-472E-BE4E-9C90992F84A1} = {B8FA8DA9-95FF-4BD3-8A01-F3C24DF259D4}
+		{6D0C0F4E-3FCA-4DEE-A415-1F1EFD7C63DE} = {40D881F5-BDC6-4C0D-A8E5-5527C1E1EDB9}
+		{55C33433-BB59-44FE-94C4-9E016405465F} = {40D881F5-BDC6-4C0D-A8E5-5527C1E1EDB9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEC3C875-6855-4392-8487-90AB76462FDF}
+	EndGlobalSection
+EndGlobal
