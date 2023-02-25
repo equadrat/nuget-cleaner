@@ -1,6 +1,5 @@
-﻿using System;
-using System.Diagnostics;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+using System;
 
 namespace e2.NuGet.Cleaner.Models
 {

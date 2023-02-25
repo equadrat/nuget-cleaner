@@ -1,17 +1,14 @@
-﻿using System;
+﻿using e2.Framework.Exceptions;
+using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using e2.Framework.Exceptions;
-using JetBrains.Annotations;
 
 namespace e2.NuGet.Cleaner.Models
 {
     /// <summary>
     /// This class represents a dictionary to provide/track the publish dates for packages.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     internal sealed class PackagePublishDateDictionary: IPackagePublishDateDictionary
     {
         /// <summary>

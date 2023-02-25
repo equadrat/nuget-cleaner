@@ -1,16 +1,12 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using JetBrains.Annotations;
 
 namespace e2.NuGet.Cleaner.Models
 {
     /// <summary>
     /// This class represents a snapshot of a package source.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     internal sealed class PackageSourceSnapshot: IPackageSourceSnapshot
     {
         /// <inheritdoc />

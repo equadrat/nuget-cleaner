@@ -1,17 +1,13 @@
-﻿using System;
-using System.Diagnostics;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.NuGet.Cleaner.Components;
 using JetBrains.Annotations;
+using System;
 
 namespace e2.NuGet.Cleaner.Helpers
 {
     /// <summary>
     /// This class provides helper methods.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public static class BusinessLogicBootstrapperModuleExtensions
     {

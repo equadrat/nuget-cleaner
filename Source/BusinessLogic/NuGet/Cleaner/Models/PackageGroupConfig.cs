@@ -1,16 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using e2.Framework.Enums;
+﻿using e2.Framework.Enums;
 using JetBrains.Annotations;
+using System;
 
 namespace e2.NuGet.Cleaner.Models
 {
     /// <summary>
     /// This class represents the configuration of a package group.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public sealed class PackageGroupConfig: IPackageGroupConfig
     {

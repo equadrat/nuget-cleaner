@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using e2.Framework;
+﻿using e2.Framework;
 using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Models
 {
     /// <summary>
     /// This class represents an aggregation of the versions of a package.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     internal sealed class PackageAggregation: IPackageAggregation
     {
         /// <summary>

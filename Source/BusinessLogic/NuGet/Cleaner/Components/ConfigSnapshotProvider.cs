@@ -1,16 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using e2.NuGet.Cleaner.Models;
+﻿using e2.NuGet.Cleaner.Models;
 using JetBrains.Annotations;
+using System;
 
 namespace e2.NuGet.Cleaner.Components
 {
     /// <summary>
     /// This class represents a provider for the current configuration snapshot.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public sealed class ConfigSnapshotProvider: IConfigSnapshotProvider
     {

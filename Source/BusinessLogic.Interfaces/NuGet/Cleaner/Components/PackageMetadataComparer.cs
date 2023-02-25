@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using e2.NuGet.Cleaner.Models;
+﻿using e2.NuGet.Cleaner.Models;
 using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Components
 {
     /// <summary>
     /// This class represents a comparer for <see cref="IPackageMetadata" />.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public sealed class PackageMetadataComparer: EqualityComparer<IPackageMetadata>,
                                                  IComparer<IPackageMetadata>

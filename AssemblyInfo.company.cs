@@ -1,9 +1,9 @@
+using e2;
+using JetBrains.Annotations;
 using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Resources;
-using e2;
-using JetBrains.Annotations;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 [assembly: AssemblyCompany(CompanyAssemblyInfo.Name)]

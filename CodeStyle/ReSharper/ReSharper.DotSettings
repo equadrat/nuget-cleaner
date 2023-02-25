@@ -4,6 +4,7 @@
 	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EIfThenThrowPattern/@EntryIndexedValue">5000</s:Int64>
 	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EPatternMatchingIfThenThrowPattern/@EntryIndexedValue">1000</s:Int64>
 	<s:Int64 x:Key="/Default/CodeEditing/NullCheckPatterns/PatternTypeNamesToPriority/=JetBrains_002EReSharper_002EFeature_002EServices_002ECSharp_002ENullChecking_002EThrowExpressionNullCheckPattern/@EntryIndexedValue">3000</s:Int64>
+	<s:Boolean x:Key="/Default/CodeInspection/Highlighting/ColorUsageHighlightingEnabled/@EntryValue">False</s:Boolean>
 	
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeAttributes/@EntryIndexedValue">SUGGESTION</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeMissingParentheses/@EntryIndexedValue">HINT</s:String>
@@ -285,7 +286,10 @@
 	<s:String x:Key="/Default/CodeStyle/CSharpUsing/KeepImports/=System/@EntryIndexedValue">System</s:String>
 	<s:String x:Key="/Default/CodeStyle/CSharpUsing/MandatoryImports/=JetBrains_002EAnnotations/@EntryIndexedValue">JetBrains.Annotations</s:String>
 	<s:String x:Key="/Default/CodeStyle/CSharpUsing/MandatoryImports/=System/@EntryIndexedValue">System</s:String>
-	<s:String x:Key="/Default/CodeStyle/CSharpUsing/MandatoryImports/=System_002EDiagnostics/@EntryIndexedValue">System.Diagnostics</s:String>
+	<s:Boolean x:Key="/Default/CodeStyle/CSharpUsing/QualifiedUsingAtNestedScope/@EntryValue">True</s:Boolean>
+	
+	<s:Boolean x:Key="/Default/CodeStyle/CSharpUsing/SortUsingsWithSystemFirst/@EntryValue">False</s:Boolean>
+	
 	
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=SHA/@EntryIndexedValue">SHA</s:String>
 	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpNaming/ApplyAutoDetectedRules/@EntryValue">False</s:Boolean>
@@ -327,8 +331,8 @@
 	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/Abbreviations/=PART/@EntryIndexedValue">PART</s:String>
 	<s:String x:Key="/Default/CodeStyle/VBImport/MandatoryImports/=JetBrains_002EAnnotations/@EntryIndexedValue">JetBrains.Annotations</s:String>
 	<s:String x:Key="/Default/CodeStyle/VBImport/MandatoryImports/=System/@EntryIndexedValue">System</s:String>
-	<s:String x:Key="/Default/CodeStyle/VBImport/MandatoryImports/=System_002EDiagnostics/@EntryIndexedValue">System.Diagnostics</s:String>
-	<s:String x:Key="/Default/CodeStyle/VBImport/MandatoryImports/=System_002EDiagnostics_002ECodeAnalysis/@EntryIndexedValue">System.Diagnostics.CodeAnalysis</s:String>
+	
+	
 	<s:Boolean x:Key="/Default/Environment/AssemblyExplorer/UseAssemblyExplorerByDefault/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/ContinuousTesting/ShowStatusBarIndicator/@EntryValue">False</s:Boolean>
 	<s:String x:Key="/Default/Environment/ExternalSources/NavigationMode/@EntryValue">ObjectBrowser</s:String>
@@ -1630,9 +1634,6 @@ protected virtual void On$EVENTNAME$([JetBrains.Annotations.NotNull] $EVENTARGST
     /// &lt;summary&gt;&#xD;
     /// TODO: $NAMESPACE$.$TYPENAME$&#xD;
     /// &lt;/summary&gt;&#xD;
-#if !DEBUG&#xD;
-    [DebuggerStepThrough]&#xD;
-#endif&#xD;
     [System.CLSCompliant(ProductAssemblyInfo.ClsCompliant)]&#xD;
     public struct $TYPENAME$ {$END$}&#xD;
 }</s:String>
@@ -1679,9 +1680,6 @@ protected virtual void On$EVENTNAME$([JetBrains.Annotations.NotNull] $EVENTARGST
     /// &lt;summary&gt;&#xD;
     /// TODO: $NAMESPACE$.$TYPENAME$&#xD;
     /// &lt;/summary&gt;&#xD;
-#if !DEBUG&#xD;
-    [DebuggerStepThrough]&#xD;
-#endif&#xD;
     [System.CLSCompliant(ProductAssemblyInfo.ClsCompliant)]&#xD;
     public class $TYPENAME$ {$END$}&#xD;
 }</s:String>

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
 using JetBrains.Annotations;
+using System;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 using INuGetLogger = NuGet.Common.ILogger;
 
@@ -12,9 +11,6 @@ namespace e2.NuGet.Cleaner.Components
     /// <summary>
     /// This class represents a factory to create instances of <see cref="INuGetAccessor" />.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [ExcludeFromCodeCoverage]
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public sealed class NuGetAccessorFactory: INuGetAccessorFactory

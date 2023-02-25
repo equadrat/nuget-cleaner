@@ -1,21 +1,18 @@
-using System;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 using e2.Framework.Components;
 using e2.Framework.Helpers;
 using e2.Framework.Models;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace e2.NuGet.Cleaner.Components
 {
     /// <summary>
     /// This class represents the worker service.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public sealed class WorkerService: IWorkerService
     {

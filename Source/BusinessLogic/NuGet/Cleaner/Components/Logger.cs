@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Enums;
 using JetBrains.Annotations;
+using System;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace e2.NuGet.Cleaner.Components
@@ -10,9 +9,6 @@ namespace e2.NuGet.Cleaner.Components
     /// <summary>
     /// This class represents the logger.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [ExcludeFromCodeCoverage]
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public sealed class Logger: ILogger

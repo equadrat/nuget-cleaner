@@ -1,20 +1,16 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using JetBrains.Annotations;
 
 namespace e2.NuGet.Cleaner.Models
 {
     /// <summary>
     /// This class represents a snapshots of the configuration.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     internal sealed class ConfigSnapshot: IConfigSnapshot
     {
         /// <summary>

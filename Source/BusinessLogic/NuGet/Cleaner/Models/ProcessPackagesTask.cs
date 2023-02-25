@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Helpers;
 using e2.NuGet.Cleaner.Components;
 using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace e2.NuGet.Cleaner.Models
 {
     /// <summary>
     /// This class represents the task to process the packages.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     internal sealed class ProcessPackagesTask: IProcessPackagesTask
     {
         /// <summary>

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using JetBrains.Annotations;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 
 namespace e2.NuGet.Cleaner.Models
 {

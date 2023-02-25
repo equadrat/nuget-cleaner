@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Enums;
 using e2.Framework.Helpers;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace e2.NuGet.Cleaner.Components
@@ -17,9 +17,6 @@ namespace e2.NuGet.Cleaner.Components
     /// <summary>
     /// This class represents the config provider.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [ExcludeFromCodeCoverage]
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public sealed class ConfigProvider: IConfigProvider

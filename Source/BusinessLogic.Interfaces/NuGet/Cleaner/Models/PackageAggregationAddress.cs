@@ -1,15 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+using System;
 
 namespace e2.NuGet.Cleaner.Models
 {
     /// <summary>
     /// This class represents the address of an aggregated package.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public readonly struct PackageAggregationAddress
     {

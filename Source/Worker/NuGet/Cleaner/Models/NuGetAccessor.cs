@@ -1,4 +1,11 @@
-﻿using System;
+﻿using e2.Framework.Components;
+using e2.Framework.Exceptions;
+using e2.NuGet.Cleaner.Components;
+using JetBrains.Annotations;
+using NuGet.Configuration;
+using NuGet.Protocol;
+using NuGet.Protocol.Core.Types;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -6,13 +13,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using e2.Framework.Components;
-using e2.Framework.Exceptions;
-using e2.NuGet.Cleaner.Components;
-using JetBrains.Annotations;
-using NuGet.Configuration;
-using NuGet.Protocol;
-using NuGet.Protocol.Core.Types;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 using INuGetLogger = NuGet.Common.ILogger;
 
@@ -21,9 +21,6 @@ namespace e2.NuGet.Cleaner.Models
     /// <summary>
     /// This class represents an accessor for the NuGet API.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [ExcludeFromCodeCoverage]
     internal sealed class NuGetAccessor: INuGetAccessor
     {

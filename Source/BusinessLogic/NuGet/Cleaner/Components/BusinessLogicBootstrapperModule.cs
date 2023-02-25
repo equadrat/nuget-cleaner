@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using e2.Framework.Attributes;
+﻿using e2.Framework.Attributes;
 using e2.Framework.Components;
 using e2.Framework.Delegates;
 using e2.Framework.Helpers;
 using e2.NuGet.Cleaner.Models;
 using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Components
 {
     /// <summary>
     /// This class represents the business logic bootstrapper module.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     [CoreImplicitBootstrapperModuleInterface(typeof(IBusinessLogicBootstrapperModule))]
     public class BusinessLogicBootstrapperModule: CoreBootstrapperModule,

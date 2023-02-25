@@ -1,11 +1,10 @@
-using System;
-using System.Diagnostics;
 using e2.Framework.Components;
 using e2.Framework.Helpers;
 using e2.NuGet.Cleaner.Components;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace e2.NuGet.Cleaner

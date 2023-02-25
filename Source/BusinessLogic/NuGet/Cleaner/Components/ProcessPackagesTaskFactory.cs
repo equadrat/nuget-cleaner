@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
 using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Components
 {
     /// <summary>
     /// This class represents a factory to create tasks to process the packages.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public sealed class ProcessPackagesTaskFactory: IProcessPackagesTaskFactory
     {

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using e2.Framework.Exceptions;
+﻿using e2.Framework.Exceptions;
 using e2.NuGet.Cleaner.Models;
 using JetBrains.Annotations;
+using System;
+using System.Linq;
 
 namespace e2.NuGet.Cleaner.Components
 {
     /// <summary>
     /// This class represents a decision-maker for the cleanup action of a package.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public sealed class PackageCleanupActionDecisionMaker: IPackageCleanupActionDecisionMaker
     {

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Delegates;
 using e2.Framework.Helpers;
 using e2.Framework.MemberTemplates;
 using e2.NuGet.Cleaner.Helpers;
 using JetBrains.Annotations;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 using INuGetLogger = NuGet.Common.ILogger;
 using NuGetNullLogger = NuGet.Common.NullLogger;
@@ -19,9 +18,6 @@ namespace e2.NuGet.Cleaner.Components
     /// <summary>
     /// This class represents the bootstrapper module of the worker.
     /// </summary>
-#if !DEBUG
-    [DebuggerStepThrough]
-#endif
     [ExcludeFromCodeCoverage]
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
     public class WorkerBootstrapperModule: CoreBootstrapperModule,
@@ -110,7 +106,7 @@ namespace e2.NuGet.Cleaner.Components
                 var currentDirectory = Environment.CurrentDirectory;
                 var logFilePath = Path.Combine(currentDirectory, logFileName);
 
-                var loggingTextFileTarget = new CoreLoggingTextFileTarget(logFilePath, factory.GetInstanceOf<ICoreLockFactory>(), factory.GetInstanceOf<ICoreLoggingEntryTextFormatter>(), maxBackupFiles: 10);
+                var loggingTextFileTarget = CoreLoggingTextFileTarget.Create(factory, logFilePath, maxBackupFiles: 10, maxFileSize: 128 * 1024 * 1024);
                 lifetimeObjects.Push(loggingContext.Attach(loggingTextFileTarget));
             }
         }
