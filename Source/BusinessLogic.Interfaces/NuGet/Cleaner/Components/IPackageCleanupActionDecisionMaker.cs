@@ -1,6 +1,6 @@
 ﻿using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -21,6 +21,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <c>true</c> to unlist the package version; <c>false</c> otherwise.
         /// </returns>
         [Pure]
-        bool GetUnlistVersion([NotNull] IPackageAggregation packageAggregation, PackageAggregationAddress packageAggregationAddress, [NotNull] IPackageCleanupConfig cleanupConfig, DateTimeOffset now);
+        bool GetUnlistVersion(IPackageAggregation packageAggregation, PackageAggregationAddress packageAggregationAddress, IPackageCleanupConfig cleanupConfig, DateTimeOffset now);
     }
 }

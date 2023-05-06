@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Models
@@ -10,7 +9,7 @@ namespace e2.NuGet.Cleaner.Models
     internal sealed class VersionAggregation: IVersionAggregation
     {
         /// <inheritdoc />
-        public Version Version {get; set;}
+        public Version? Version {get; set;}
 
         /// <inheritdoc />
         public IList<IOriginalVersionAggregation> RegularVersions {get;}

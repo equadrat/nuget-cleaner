@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -15,7 +14,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The source identifier.
         /// </value>
-        string SourceId {get;}
+        string? SourceId {get;}
 
         /// <summary>
         /// Gets the package source.
@@ -23,6 +22,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package source.
         /// </value>
-        string PackageSource {get;}
+        string? PackageSource {get;}
     }
 }

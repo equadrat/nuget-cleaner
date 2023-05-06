@@ -1,9 +1,9 @@
 ﻿using e2.Framework.Components;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using INuGetLogger = NuGet.Common.ILogger;
 
 namespace e2.NuGet.Cleaner.Components
@@ -18,31 +18,26 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The token factory.
         /// </summary>
-        [NotNull]
-        private readonly ICoreTokenFactory _tokenFactory;
+        private readonly ICoreOwnerTokenFactory _tokenFactory;
 
         /// <summary>
         /// The logger.
         /// </summary>
-        [NotNull]
         private readonly ILogger _logger;
 
         /// <summary>
         /// The NuGet logger.
         /// </summary>
-        [NotNull]
         private readonly INuGetLogger _nuGetLogger;
 
         /// <summary>
         /// The package metadata factory.
         /// </summary>
-        [NotNull]
         private readonly ICoreIOCInstanceFactory<IPackageMetadata> _packageMetadataFactory;
 
         /// <summary>
         /// The accessor instance pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreInstancePool<NuGetAccessor> _accessorInstancePool;
 
         /// <summary>
@@ -64,7 +59,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// packageMetadataFactory
         /// </exception>
-        public NuGetAccessorFactory([NotNull] ICoreTokenFactory tokenFactory, [NotNull] ICoreInstancePoolFactory instancePoolFactory, [NotNull] ILogger logger, [NotNull] INuGetLogger nuGetLogger, [NotNull] ICoreIOCInstanceFactory<IPackageMetadata> packageMetadataFactory)
+        public NuGetAccessorFactory(ICoreOwnerTokenFactory tokenFactory, ICoreInstancePoolFactory instancePoolFactory, ILogger logger, INuGetLogger nuGetLogger, ICoreIOCInstanceFactory<IPackageMetadata> packageMetadataFactory)
         {
             if (tokenFactory == null) throw new ArgumentNullException(nameof(tokenFactory));
             if (instancePoolFactory == null) throw new ArgumentNullException(nameof(instancePoolFactory));
@@ -81,7 +76,7 @@ namespace e2.NuGet.Cleaner.Components
         }
 
         /// <inheritdoc />
-        public ICoreOwnerToken<INuGetAccessor> GetAccessor(string packageSource, string apiKey)
+        public ICoreOwnerToken<INuGetAccessor> GetAccessor(string? packageSource, string apiKey)
         {
             if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
 
@@ -95,7 +90,7 @@ namespace e2.NuGet.Cleaner.Components
         /// Releases the accessor.
         /// </summary>
         /// <param name="accessor">The accessor.</param>
-        private void ReleaseAccessor([NotNull] NuGetAccessor accessor)
+        private void ReleaseAccessor(NuGetAccessor accessor)
         {
             if (!this._accessorInstancePool.Recycle(accessor)) NuGetAccessor.Cleanup(accessor);
         }
@@ -107,7 +102,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The accessor.
         /// </returns>
         [Pure]
-        [NotNull]
         private NuGetAccessor CreateAccessor()
         {
             return new NuGetAccessor(this._logger, this._nuGetLogger, this._packageMetadataFactory);

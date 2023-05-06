@@ -1,7 +1,7 @@
 ﻿using e2.Framework.Exceptions;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace e2.NuGet.Cleaner.Components
@@ -20,7 +20,7 @@ namespace e2.NuGet.Cleaner.Components
         /// <c>true</c> if the specified package is listed; otherwise, <c>false</c>.
         /// </returns>
         [Pure]
-        private static bool IsListed([NotNull] IPackageMetadata packageMetadata)
+        private static bool IsListed(IPackageMetadata packageMetadata)
         {
             return packageMetadata.IsListed;
         }
@@ -36,7 +36,7 @@ namespace e2.NuGet.Cleaner.Components
         /// <c>true</c> if the specified package is deprecated or has expired; otherwise, <c>false</c>.
         /// </returns>
         [Pure]
-        private static bool IsDeprecatedOrHasExpired([NotNull] IOriginalVersionAggregation originalVersionAggregation, [NotNull] IPackageMetadata packageMetadata, [NotNull] IPackageCleanupConfig cleanupConfig, DateTimeOffset now)
+        private static bool IsDeprecatedOrHasExpired(IOriginalVersionAggregation originalVersionAggregation, IPackageMetadata packageMetadata, IPackageCleanupConfig cleanupConfig, DateTimeOffset now)
         {
             if (packageMetadata.IsDeprecated) return true;
 
@@ -57,7 +57,7 @@ namespace e2.NuGet.Cleaner.Components
         /// </returns>
         /// <exception cref="e2.Framework.Exceptions.CoreArgumentOutOfRangeException">packageAggregationAddress</exception>
         [Pure]
-        private static int GetNumberOfNewerRegularPackages([NotNull] IPackageAggregation packageAggregation, PackageAggregationAddress packageAggregationAddress)
+        private static int GetNumberOfNewerRegularPackages(IPackageAggregation packageAggregation, PackageAggregationAddress packageAggregationAddress)
         {
 #if DEBUG
             if (packageAggregationAddress.IsPreviewVersion) throw new CoreArgumentOutOfRangeException(nameof(packageAggregationAddress), packageAggregationAddress);

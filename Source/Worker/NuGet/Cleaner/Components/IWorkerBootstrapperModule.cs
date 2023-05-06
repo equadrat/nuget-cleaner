@@ -1,6 +1,5 @@
 ﻿using e2.Framework.Components;
 using e2.Framework.MemberTemplates;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Components
@@ -15,25 +14,25 @@ namespace e2.NuGet.Cleaner.Components
         /// Registers the configuration provider.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterConfigProvider([NotNull] ICoreIOCRegistry registry);
+        void RegisterConfigProvider(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Registers the NuGet logger.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterNuGetLogger([NotNull] ICoreIOCRegistry registry);
+        void RegisterNuGetLogger(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Registers the NuGet accessor factory.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterNuGetAccessorFactory([NotNull] ICoreIOCRegistry registry);
+        void RegisterNuGetAccessorFactory(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Initializes the logging targets.
         /// </summary>
         /// <param name="factory">The factory.</param>
         /// <param name="lifetimeObjects">The lifetime objects.</param>
-        void InitLoggingTargets([NotNull] ICoreIOCFactory factory, [NotNull] ICorePushOne<IDisposable> lifetimeObjects);
+        void InitLoggingTargets(ICoreIOCFactory factory, ICorePushOne<IDisposable> lifetimeObjects);
     }
 }

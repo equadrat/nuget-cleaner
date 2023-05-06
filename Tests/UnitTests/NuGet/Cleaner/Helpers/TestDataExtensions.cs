@@ -1,10 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using e2.Framework.Enums;
+﻿using e2.Framework.Enums;
 using e2.NuGet.Cleaner.Components;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace e2.NuGet.Cleaner.Helpers
 {
@@ -19,7 +17,7 @@ namespace e2.NuGet.Cleaner.Helpers
         /// </summary>
         /// <param name="configProvider">The configuration provider.</param>
         /// <exception cref="System.ArgumentNullException">configProvider</exception>
-        internal static void ApplyTestConfig1([NotNull] this ConfigProviderFake configProvider)
+        internal static void ApplyTestConfig1(this ConfigProviderFake configProvider)
         {
             if (configProvider == null) throw new ArgumentNullException(nameof(configProvider));
 
@@ -41,7 +39,7 @@ namespace e2.NuGet.Cleaner.Helpers
         /// <param name="factory">The factory.</param>
         /// <param name="now">The current date/time.</param>
         /// <exception cref="System.ArgumentNullException">factory</exception>
-        internal static void ApplyTestConfig1([NotNull] this NuGetAccessorFactoryFake factory, DateTimeOffset? now = null)
+        internal static void ApplyTestConfig1(this NuGetAccessorFactoryFake factory, DateTimeOffset? now = null)
         {
             if (factory == null) throw new ArgumentNullException(nameof(factory));
 

@@ -1,5 +1,4 @@
 ﻿using e2.Framework.Enums;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Models
@@ -11,21 +10,21 @@ namespace e2.NuGet.Cleaner.Models
     public sealed class PackageGroupConfig: IPackageGroupConfig
     {
         /// <inheritdoc />
-        public string SourceId {get; set;}
+        public string? SourceId {get; set;}
 
         /// <inheritdoc />
-        public string ApiKeyId {get; set;}
+        public string? ApiKeyId {get; set;}
 
         /// <inheritdoc />
-        public string Owner {get; set;}
+        public string? Owner {get; set;}
 
         /// <inheritdoc />
-        public string PackageIdPattern {get; set;}
+        public string? PackageIdPattern {get; set;}
 
         /// <inheritdoc />
         public eCoreStringMatchMode PackageIdMatchMode {get; set;}
 
         /// <inheritdoc />
-        public string PackageCleanupId {get; set;}
+        public string? PackageCleanupId {get; set;}
     }
 }

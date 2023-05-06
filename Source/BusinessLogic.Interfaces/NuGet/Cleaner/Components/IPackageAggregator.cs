@@ -1,5 +1,4 @@
 ﻿using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 
@@ -17,6 +16,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <param name="packageMetadata">The package metadata.</param>
         /// <param name="packagePublishDateDictionary">The package publish date dictionary.</param>
         /// <param name="aggregatedPackages">The aggregated packages.</param>
-        void Aggregate([NotNull] IEnumerable<IPackageMetadata> packageMetadata, [NotNull] IPackagePublishDateDictionary packagePublishDateDictionary, [NotNull] ICollection<IPackageAggregation> aggregatedPackages);
+        void Aggregate(IEnumerable<IPackageMetadata> packageMetadata, IPackagePublishDateDictionary packagePublishDateDictionary, ICollection<IPackageAggregation> aggregatedPackages);
     }
 }

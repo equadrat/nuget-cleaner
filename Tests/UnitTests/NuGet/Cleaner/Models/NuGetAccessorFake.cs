@@ -1,15 +1,13 @@
-﻿using System;
+﻿using e2.Framework;
+using e2.NuGet.Cleaner.Components;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using e2.Framework;
-using e2.NuGet.Cleaner.Components;
-using JetBrains.Annotations;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -22,19 +20,16 @@ namespace e2.NuGet.Cleaner.Models
         /// <summary>
         /// The owner.
         /// </summary>
-        [NotNull]
         private readonly NuGetAccessorFactoryFake _owner;
 
         /// <summary>
         /// The package source.
         /// </summary>
-        [CanBeNull]
-        private readonly string _packageSource;
+        private readonly string? _packageSource;
 
         /// <summary>
         /// The API key.
         /// </summary>
-        [NotNull]
         private readonly string _apiKey;
 
         /// <summary>
@@ -48,7 +43,7 @@ namespace e2.NuGet.Cleaner.Models
         /// or
         /// apiKey
         /// </exception>
-        internal NuGetAccessorFake([NotNull] NuGetAccessorFactoryFake owner, [CanBeNull] string packageSource, [NotNull] string apiKey)
+        internal NuGetAccessorFake(NuGetAccessorFactoryFake owner, string? packageSource, string apiKey)
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
             if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
@@ -59,7 +54,7 @@ namespace e2.NuGet.Cleaner.Models
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<IPackageMetadata> GetPackagesAsync(string owner, Func<string, bool> packageIdPredicate, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<IPackageMetadata> GetPackagesAsync(string owner, Func<string, bool>? packageIdPredicate, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
             if (packageIdPredicate == null) throw new ArgumentNullException(nameof(packageIdPredicate));
@@ -94,7 +89,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <c>true</c> if the <paramref name="validateApiKey" /> exists; otherwise, <c>false</c>.
         /// </returns>
         // ReSharper disable once UnusedParameter.Local
-        private bool TryGetRepository(out NuGetRepository repository, out Exception exception, [CanBeNull] NCObject _ = null, bool validateApiKey = false)
+        private bool TryGetRepository(out NuGetRepository repository, out Exception exception, NCObject? _ = null, bool validateApiKey = false)
         {
             if (!this._owner.TryGetRepository(this._packageSource, out repository))
             {
@@ -108,7 +103,7 @@ namespace e2.NuGet.Cleaner.Models
                 return false;
             }
 
-            exception = null;
+            exception = null!;
             return true;
         }
     }

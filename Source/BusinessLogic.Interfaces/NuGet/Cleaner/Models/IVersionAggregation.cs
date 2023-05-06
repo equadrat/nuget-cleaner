@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Models
@@ -16,7 +15,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The version.
         /// </value>
-        Version Version {get; set;}
+        Version? Version {get; set;}
 
         /// <summary>
         /// Gets the regular versions.
@@ -24,7 +23,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The regular versions.
         /// </value>
-        [NotNull]
         IList<IOriginalVersionAggregation> RegularVersions {get;}
 
         /// <summary>
@@ -33,7 +31,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The preview versions.
         /// </value>
-        [NotNull]
         IList<IOriginalVersionAggregation> PreviewVersions {get;}
     }
 }

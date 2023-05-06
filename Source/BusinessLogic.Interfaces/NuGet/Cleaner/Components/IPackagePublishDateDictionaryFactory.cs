@@ -1,7 +1,7 @@
 ﻿using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -19,7 +19,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The publish date dictionary.
         /// </returns>
         [Pure]
-        [NotNull]
-        ICoreOwnerToken<IPackagePublishDateDictionary> GetPublishDateDictionary([NotNull] IPackageOwnerSnapshot packageOwnerSnapshot);
+        ICoreOwnerToken<IPackagePublishDateDictionary> GetPublishDateDictionary(IPackageOwnerSnapshot packageOwnerSnapshot);
     }
 }

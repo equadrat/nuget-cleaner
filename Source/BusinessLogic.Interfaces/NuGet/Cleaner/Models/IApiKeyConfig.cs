@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -15,7 +14,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The API key identifier.
         /// </value>
-        string ApiKeyId {get;}
+        string? ApiKeyId {get;}
 
         /// <summary>
         /// Gets the API key.
@@ -23,6 +22,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The API key.
         /// </value>
-        string ApiKey {get;}
+        string? ApiKey {get;}
     }
 }

@@ -1,5 +1,4 @@
 ﻿using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 
@@ -9,8 +8,8 @@ namespace e2.NuGet.Cleaner.Components
     /// This class represents a comparer for <see cref="IPackageMetadata" />.
     /// </summary>
     [CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
-    public sealed class PackageMetadataComparer: EqualityComparer<IPackageMetadata>,
-                                                 IComparer<IPackageMetadata>
+    public sealed class PackageMetadataComparer: EqualityComparer<IPackageMetadata?>,
+                                                 IComparer<IPackageMetadata?>
     {
         /// <summary>
         /// Gets the default instance.
@@ -18,25 +17,21 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The default instance.
         /// </value>
-        [NotNull]
         public static new PackageMetadataComparer Default {get;}
 
         /// <summary>
         /// The default string comparer.
         /// </summary>
-        [NotNull]
         public static readonly StringComparer DefaultStringComparer;
 
         /// <summary>
         /// The version comparer.
         /// </summary>
-        [NotNull]
-        public static readonly Comparer<Version> VersionComparer;
+        public static readonly Comparer<Version?> VersionComparer;
 
         /// <summary>
         /// The date time offset comparer.
         /// </summary>
-        [NotNull]
         public static readonly Comparer<DateTimeOffset?> DateTimeOffsetComparer;
 
         /// <summary>
@@ -46,7 +41,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             Default = new PackageMetadataComparer();
             DefaultStringComparer = StringComparer.Ordinal;
-            VersionComparer = Comparer<Version>.Default;
+            VersionComparer = Comparer<Version?>.Default;
             DateTimeOffsetComparer = Comparer<DateTimeOffset?>.Default;
         }
 
@@ -58,7 +53,7 @@ namespace e2.NuGet.Cleaner.Components
         }
 
         /// <inheritdoc />
-        public int Compare(IPackageMetadata x, IPackageMetadata y)
+        public int Compare(IPackageMetadata? x, IPackageMetadata? y)
         {
             if (x == null) return y == null ? 0 : -1;
             if (y == null) return 1;
@@ -106,7 +101,7 @@ namespace e2.NuGet.Cleaner.Components
         }
 
         /// <inheritdoc />
-        public override bool Equals(IPackageMetadata x, IPackageMetadata y)
+        public override bool Equals(IPackageMetadata? x, IPackageMetadata? y)
         {
             if (x == null) return y == null;
             if (y == null) return false;
@@ -124,8 +119,10 @@ namespace e2.NuGet.Cleaner.Components
         }
 
         /// <inheritdoc />
-        public override int GetHashCode(IPackageMetadata obj)
+        public override int GetHashCode(IPackageMetadata? obj)
         {
+            if (obj == null) return 0;
+
             return HashCode.Combine(
                 obj.PackageId,
                 obj.Owners,

@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,9 +22,7 @@ namespace e2.NuGet.Cleaner.Models
         /// The packages.
         /// </returns>
         [Pure]
-        [NotNull]
-        [ItemNotNull]
-        IAsyncEnumerable<IPackageMetadata> GetPackagesAsync([NotNull] string owner, [CanBeNull] Func<string, bool> packageIdPredicate, CancellationToken cancellationToken);
+        IAsyncEnumerable<IPackageMetadata> GetPackagesAsync(string owner, Func<string, bool>? packageIdPredicate, CancellationToken cancellationToken);
 
         /// <summary>
         /// Unlists a package.
@@ -35,7 +33,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <returns>
         /// The state of the asynchronous process.
         /// </returns>
-        [NotNull]
-        Task UnlistPackageAsync([NotNull] string packageId, [NotNull] string originalVersion, CancellationToken cancellationToken);
+        Task UnlistPackageAsync(string packageId, string originalVersion, CancellationToken cancellationToken);
     }
 }

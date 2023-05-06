@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -16,7 +16,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The owner.
         /// </value>
-        [NotNull]
         string Owner {get;}
 
         /// <summary>
@@ -25,7 +24,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package groups.
         /// </value>
-        [NotNull]
         IReadOnlyList<IPackageGroupSnapshot> PackageGroups {get;}
 
         /// <summary>
@@ -36,7 +34,7 @@ namespace e2.NuGet.Cleaner.Models
         /// The package group index or <c>-1</c> if the package identifier doesn't exist.
         /// </returns>
         [Pure]
-        int GetPackageGroupIndex([NotNull] string packageId);
+        int GetPackageGroupIndex(string packageId);
 
         /// <summary>
         /// Determines whether the package identifier matcheses any package identifier pattern.
@@ -46,6 +44,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <c>true</c> if the package identifier matches a package identifier pattern.
         /// </returns>
         [Pure]
-        bool MatchesAnyPackageIdPattern([NotNull] string packageId);
+        bool MatchesAnyPackageIdPattern(string packageId);
     }
 }

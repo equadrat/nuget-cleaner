@@ -1,6 +1,6 @@
 ﻿using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -18,7 +18,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The snapshot.
         /// </returns>
         [Pure]
-        [NotNull]
-        IConfigSnapshot CreateSnapshot([NotNull] IConfigProvider configProvider);
+        IConfigSnapshot CreateSnapshot(IConfigProvider configProvider);
     }
 }

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using e2.Framework;
+﻿using e2.Framework;
 using e2.NuGet.Cleaner.Helpers;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
+using System.Linq;
 using Telerik.JustMock;
 using Telerik.JustMock.Helpers;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -30,9 +29,8 @@ namespace e2.NuGet.Cleaner.Components
         /// The instance.
         /// </returns>
         [Pure]
-        [NotNull]
         // ReSharper disable once UnusedParameter.Local
-        private PackageAggregator CreateInstance([CanBeNull] NCObject _ = null, bool inconclusive = true)
+        private PackageAggregator CreateInstance(NCObject? _ = null, bool inconclusive = true)
         {
             try
             {
@@ -83,42 +81,42 @@ namespace e2.NuGet.Cleaner.Components
             Assert.AreEqual("1.0.0.0", aggregatedPackages[0].Versions[0].RegularVersions[0].OriginalVersion);
             Assert.AreEqual(new DateTimeOffset(2000, 1, 1, 0, 0, 0, TimeSpan.Zero), aggregatedPackages[0].Versions[0].RegularVersions[0].PublishDate);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[0].RegularVersions[0].Packages.Count);
-            Assert.AreSame(packages.First(x => (x.PackageId == "My.Packages.A") && (x.OriginalVersion == "1.0.0.0")), aggregatedPackages[0].Versions[0].RegularVersions[0].Packages[0]);
+            Assert.AreSame(packages.First(x => x is { PackageId: "My.Packages.A", OriginalVersion: "1.0.0.0" }), aggregatedPackages[0].Versions[0].RegularVersions[0].Packages[0]);
 
             Assert.AreEqual(new Version(1, 1, 0, 0), aggregatedPackages[0].Versions[1].Version);
             Assert.AreEqual(2, aggregatedPackages[0].Versions[1].PreviewVersions.Count);
             Assert.AreEqual("1.1.0.0-pre1", aggregatedPackages[0].Versions[1].PreviewVersions[0].OriginalVersion);
             Assert.AreEqual(new DateTimeOffset(2000, 1, 10, 0, 0, 0, TimeSpan.Zero), aggregatedPackages[0].Versions[1].PreviewVersions[0].PublishDate);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[1].PreviewVersions[0].Packages.Count);
-            Assert.AreSame(packages.First(x => (x.PackageId == "My.Packages.A") && (x.OriginalVersion == "1.1.0.0-pre1")), aggregatedPackages[0].Versions[1].PreviewVersions[0].Packages[0]);
+            Assert.AreSame(packages.First(x => x is { PackageId: "My.Packages.A", OriginalVersion: "1.1.0.0-pre1" }), aggregatedPackages[0].Versions[1].PreviewVersions[0].Packages[0]);
             Assert.AreEqual("1.1.0.0-pre2", aggregatedPackages[0].Versions[1].PreviewVersions[1].OriginalVersion);
             Assert.AreEqual(new DateTimeOffset(2000, 1, 20, 0, 0, 0, TimeSpan.Zero), aggregatedPackages[0].Versions[1].PreviewVersions[1].PublishDate);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[1].PreviewVersions[1].Packages.Count);
-            Assert.AreSame(packages.First(x => (x.PackageId == "My.Packages.A") && (x.OriginalVersion == "1.1.0.0-pre2")), aggregatedPackages[0].Versions[1].PreviewVersions[1].Packages[0]);
+            Assert.AreSame(packages.First(x => x is { PackageId: "My.Packages.A", OriginalVersion: "1.1.0.0-pre2" }), aggregatedPackages[0].Versions[1].PreviewVersions[1].Packages[0]);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[1].RegularVersions.Count);
             Assert.AreEqual("1.1.0.0", aggregatedPackages[0].Versions[1].RegularVersions[0].OriginalVersion);
             Assert.AreEqual(new DateTimeOffset(2000, 1, 21, 0, 0, 0, TimeSpan.Zero), aggregatedPackages[0].Versions[1].RegularVersions[0].PublishDate);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[1].RegularVersions[0].Packages.Count);
-            Assert.AreSame(packages.First(x => (x.PackageId == "My.Packages.A") && (x.OriginalVersion == "1.1.0.0")), aggregatedPackages[0].Versions[1].RegularVersions[0].Packages[0]);
+            Assert.AreSame(packages.First(x => x is { PackageId: "My.Packages.A", OriginalVersion: "1.1.0.0" }), aggregatedPackages[0].Versions[1].RegularVersions[0].Packages[0]);
 
             Assert.AreEqual(new Version(1, 2, 0, 0), aggregatedPackages[0].Versions[2].Version);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[2].PreviewVersions.Count);
             Assert.AreEqual("1.2.0.0-pre1", aggregatedPackages[0].Versions[2].PreviewVersions[0].OriginalVersion);
             Assert.AreEqual(new DateTimeOffset(2000, 1, 22, 0, 0, 0, TimeSpan.Zero), aggregatedPackages[0].Versions[2].PreviewVersions[0].PublishDate);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[2].PreviewVersions[0].Packages.Count);
-            Assert.AreSame(packages.First(x => (x.PackageId == "My.Packages.A") && (x.OriginalVersion == "1.2.0.0-pre1")), aggregatedPackages[0].Versions[2].PreviewVersions[0].Packages[0]);
+            Assert.AreSame(packages.First(x => x is { PackageId: "My.Packages.A", OriginalVersion: "1.2.0.0-pre1" }), aggregatedPackages[0].Versions[2].PreviewVersions[0].Packages[0]);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[2].RegularVersions.Count);
             Assert.AreEqual("1.2.0.0", aggregatedPackages[0].Versions[2].RegularVersions[0].OriginalVersion);
             Assert.AreEqual(new DateTimeOffset(2000, 1, 30, 0, 0, 0, TimeSpan.Zero), aggregatedPackages[0].Versions[2].RegularVersions[0].PublishDate);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[2].RegularVersions[0].Packages.Count);
-            Assert.AreSame(packages.First(x => (x.PackageId == "My.Packages.A") && (x.OriginalVersion == "1.2.0.0")), aggregatedPackages[0].Versions[2].RegularVersions[0].Packages[0]);
+            Assert.AreSame(packages.First(x => x is { PackageId: "My.Packages.A", OriginalVersion: "1.2.0.0" }), aggregatedPackages[0].Versions[2].RegularVersions[0].Packages[0]);
 
             Assert.AreEqual(new Version(1, 3, 0, 0), aggregatedPackages[0].Versions[3].Version);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[3].PreviewVersions.Count);
             Assert.AreEqual("1.3.0.0-pre1", aggregatedPackages[0].Versions[3].PreviewVersions[0].OriginalVersion);
             Assert.AreEqual(new DateTimeOffset(2000, 1, 31, 0, 0, 0, TimeSpan.Zero), aggregatedPackages[0].Versions[3].PreviewVersions[0].PublishDate);
             Assert.AreEqual(1, aggregatedPackages[0].Versions[3].PreviewVersions[0].Packages.Count);
-            Assert.AreSame(packages.First(x => (x.PackageId == "My.Packages.A") && (x.OriginalVersion == "1.3.0.0-pre1")), aggregatedPackages[0].Versions[3].PreviewVersions[0].Packages[0]);
+            Assert.AreSame(packages.First(x => x is { PackageId: "My.Packages.A", OriginalVersion: "1.3.0.0-pre1" }), aggregatedPackages[0].Versions[3].PreviewVersions[0].Packages[0]);
             Assert.AreEqual(0, aggregatedPackages[0].Versions[3].RegularVersions.Count);
 
             Assert.AreEqual("OtherPackage", aggregatedPackages[1].PackageId);
@@ -131,7 +129,7 @@ namespace e2.NuGet.Cleaner.Components
             Assert.AreEqual("0.0.0.0", aggregatedPackages[1].Versions[0].RegularVersions[0].OriginalVersion);
             Assert.AreEqual(new DateTimeOffset(2000, 1, 1, 0, 0, 0, TimeSpan.Zero), aggregatedPackages[1].Versions[0].RegularVersions[0].PublishDate);
             Assert.AreEqual(1, aggregatedPackages[1].Versions[0].RegularVersions[0].Packages.Count);
-            Assert.AreSame(packages.First(x => (x.PackageId == "OtherPackage") && (x.OriginalVersion == "0.0.0.0")), aggregatedPackages[1].Versions[0].RegularVersions[0].Packages[0]);
+            Assert.AreSame(packages.First(x => x is { PackageId: "OtherPackage", OriginalVersion: "0.0.0.0" }), aggregatedPackages[1].Versions[0].RegularVersions[0].Packages[0]);
         }
     }
 }

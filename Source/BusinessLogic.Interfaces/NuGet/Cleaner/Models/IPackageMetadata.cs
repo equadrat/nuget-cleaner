@@ -1,5 +1,4 @@
 ﻿using e2.Framework.MemberTemplates;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Models
@@ -16,7 +15,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package identifier.
         /// </value>
-        string PackageId {get; set;}
+        string? PackageId {get; set;}
 
         /// <summary>
         /// Gets or sets the owners.
@@ -24,7 +23,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The owners.
         /// </value>
-        string Owners {get; set;}
+        string? Owners {get; set;}
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is listed.
@@ -56,7 +55,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The version.
         /// </value>
-        Version Version {get; set;}
+        Version? Version {get; set;}
 
         /// <summary>
         /// Gets or sets the original version.
@@ -64,7 +63,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The original version.
         /// </value>
-        string OriginalVersion {get; set;}
+        string? OriginalVersion {get; set;}
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is prerelease.

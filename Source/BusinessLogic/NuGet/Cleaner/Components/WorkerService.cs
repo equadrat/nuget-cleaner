@@ -1,7 +1,6 @@
 using e2.Framework.Components;
 using e2.Framework.Helpers;
 using e2.Framework.Models;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Diagnostics;
@@ -23,8 +22,7 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The timer token.
         /// </value>
-        [CanBeNull]
-        private ICoreOwnerToken TimerToken
+        private ICoreOwnerToken? TimerToken
         {
             set
             {
@@ -46,8 +44,7 @@ namespace e2.NuGet.Cleaner.Components
         /// The backing field of <see cref="TimerToken" />.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [CanBeNull]
-        private ICoreOwnerToken _timerToken;
+        private ICoreOwnerToken? _timerToken;
         #endregion
 
         #region property CancellationToken
@@ -57,8 +54,7 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The cancellation token.
         /// </value>
-        [CanBeNull]
-        private ICoreOwnerToken CancellationToken
+        private ICoreOwnerToken? CancellationToken
         {
             set
             {
@@ -80,38 +76,32 @@ namespace e2.NuGet.Cleaner.Components
         /// The backing field of <see cref="CancellationToken" />.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [CanBeNull]
-        private ICoreOwnerToken _cancellationToken;
+        private ICoreOwnerToken? _cancellationToken;
         #endregion
 
         /// <summary>
         /// The token factory.
         /// </summary>
-        [NotNull]
-        private readonly ICoreTokenFactory _tokenFactory;
+        private readonly ICoreOwnerTokenFactory _tokenFactory;
 
         /// <summary>
         /// The task scheduler.
         /// </summary>
-        [NotNull]
         private readonly ICoreTaskScheduler _taskScheduler;
 
         /// <summary>
         /// The host application lifetime.
         /// </summary>
-        [NotNull]
         private readonly IHostApplicationLifetime _hostApplicationLifetime;
 
         /// <summary>
         /// The configuration provider.
         /// </summary>
-        [NotNull]
         private readonly IConfigProvider _configProvider;
 
         /// <summary>
         /// The process packages task factory.
         /// </summary>
-        [NotNull]
         private readonly IProcessPackagesTaskFactory _processPackagesTaskFactory;
 
         /// <summary>
@@ -135,7 +125,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// processPackagesTaskFactory
         /// </exception>
-        public WorkerService([NotNull] ICoreTokenFactory tokenFactory, [NotNull] ICoreTaskScheduler taskScheduler, [NotNull] IHostApplicationLifetime hostApplicationLifetime, [NotNull] IConfigProvider configProvider, [NotNull] IProcessPackagesTaskFactory processPackagesTaskFactory)
+        public WorkerService(ICoreOwnerTokenFactory tokenFactory, ICoreTaskScheduler taskScheduler, IHostApplicationLifetime hostApplicationLifetime, IConfigProvider configProvider, IProcessPackagesTaskFactory processPackagesTaskFactory)
         {
             if (tokenFactory == null) throw new ArgumentNullException(nameof(tokenFactory));
             if (taskScheduler == null) throw new ArgumentNullException(nameof(taskScheduler));

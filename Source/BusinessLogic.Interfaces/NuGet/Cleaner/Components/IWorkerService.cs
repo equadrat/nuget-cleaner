@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using System;
 
 namespace e2.NuGet.Cleaner.Components

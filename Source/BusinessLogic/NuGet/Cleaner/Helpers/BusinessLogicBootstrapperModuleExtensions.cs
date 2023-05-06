@@ -1,6 +1,5 @@
 ﻿using e2.Framework.Components;
 using e2.NuGet.Cleaner.Components;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Helpers
@@ -19,7 +18,7 @@ namespace e2.NuGet.Cleaner.Helpers
         /// The module registry.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">moduleRegistry</exception>
-        public static ICoreBootstrapperModuleRegistry RegisterBusinessLogicModule([NotNull] this ICoreBootstrapperModuleRegistry moduleRegistry)
+        public static ICoreBootstrapperModuleRegistry RegisterBusinessLogicModule(this ICoreBootstrapperModuleRegistry moduleRegistry)
         {
             if (moduleRegistry == null) throw new ArgumentNullException(nameof(moduleRegistry));
 

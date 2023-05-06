@@ -1,9 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
+﻿using e2.NuGet.Cleaner.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace e2.NuGet.Cleaner.Components
 {

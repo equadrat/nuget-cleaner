@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -10,9 +9,9 @@ namespace e2.NuGet.Cleaner.Models
     public sealed class SourceConfig: ISourceConfig
     {
         /// <inheritdoc />
-        public string SourceId {get; set;}
+        public string? SourceId {get; set;}
 
         /// <inheritdoc />
-        public string PackageSource {get; set;}
+        public string? PackageSource {get; set;}
     }
 }

@@ -1,8 +1,9 @@
 ﻿using e2.Framework.Components;
+using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -19,7 +20,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The level0 dictionary.
         /// </returns>
         [Pure]
-        [NotNull]
         private static Dictionary<string, IPackageAggregation> CreateLevel0Dictionary()
         {
             return new Dictionary<string, IPackageAggregation>(PackageMetadataComparer.DefaultStringComparer);
@@ -29,7 +29,7 @@ namespace e2.NuGet.Cleaner.Components
         /// Cleanups the level0 dictionary.
         /// </summary>
         /// <param name="dictionary">The dictionary.</param>
-        private static void CleanupLevel0Dictionary([NotNull] Dictionary<string, IPackageAggregation> dictionary)
+        private static void CleanupLevel0Dictionary(Dictionary<string, IPackageAggregation> dictionary)
         {
             dictionary.Clear();
         }
@@ -37,31 +37,26 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The collection helper.
         /// </summary>
-        [NotNull]
         private readonly ICoreCollectionHelper _collectionHelper;
 
         /// <summary>
         /// The package aggregation instance factory.
         /// </summary>
-        [NotNull]
         private readonly ICoreIOCInstanceFactory<IPackageAggregation> _packageAggregationInstanceFactory;
 
         /// <summary>
         /// The version aggregation instance factory.
         /// </summary>
-        [NotNull]
         private readonly ICoreIOCInstanceFactory<IVersionAggregation> _versionAggregationInstanceFactory;
 
         /// <summary>
         /// The original version aggregation instance factory.
         /// </summary>
-        [NotNull]
         private readonly ICoreIOCInstanceFactory<IOriginalVersionAggregation> _originalVersionAggregationInstanceFactory;
 
         /// <summary>
         /// The level0 pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreInstancePool<Dictionary<string, IPackageAggregation>> _level0Pool;
 
         /// <summary>
@@ -83,7 +78,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// originalVersionAggregationInstanceFactory
         /// </exception>
-        public PackageAggregator([NotNull] ICoreCollectionHelper collectionHelper, [NotNull] ICoreInstancePoolFactory instancePoolFactory, [NotNull] ICoreIOCInstanceFactory<IPackageAggregation> packageAggregationInstanceFactory, [NotNull] ICoreIOCInstanceFactory<IVersionAggregation> versionAggregationInstanceFactory, [NotNull] ICoreIOCInstanceFactory<IOriginalVersionAggregation> originalVersionAggregationInstanceFactory)
+        public PackageAggregator(ICoreCollectionHelper collectionHelper, ICoreInstancePoolFactory instancePoolFactory, ICoreIOCInstanceFactory<IPackageAggregation> packageAggregationInstanceFactory, ICoreIOCInstanceFactory<IVersionAggregation> versionAggregationInstanceFactory, ICoreIOCInstanceFactory<IOriginalVersionAggregation> originalVersionAggregationInstanceFactory)
         {
             if (collectionHelper == null) throw new ArgumentNullException(nameof(collectionHelper));
             if (instancePoolFactory == null) throw new ArgumentNullException(nameof(instancePoolFactory));
@@ -112,7 +107,7 @@ namespace e2.NuGet.Cleaner.Components
             {
                 foreach (var metadata in packageMetadata)
                 {
-                    if ((metadata.Version == null) || (metadata.OriginalVersion == null)) continue;
+                    if ((metadata.PackageId == null) || (metadata.Version == null) || (metadata.OriginalVersion == null)) continue;
 
                     // Get the package aggregation.
                     IPackageAggregation packageAggregation;

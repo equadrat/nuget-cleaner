@@ -25,12 +25,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="equadrat.Framework.Core" Version="5.8.6" />
-    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="5.8.6" />
-    <PackageReference Include="equadrat.Framework.Test" Version="5.2.4" />
-    <PackageReference Include="equadrat.Framework.Test.Interfaces" Version="5.2.4" />
-    <PackageReference Include="equadrat.Framework.Test.MSTest" Version="5.2.4" />
-    <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+    <PackageReference Include="equadrat.Framework.Core" Version="6.0.0" />
+    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="6.0.0" />
+    <PackageReference Include="equadrat.Framework.Test" Version="6.0.0" />
+    <PackageReference Include="equadrat.Framework.Test.Interfaces" Version="6.0.0" />
+    <PackageReference Include="equadrat.Framework.Test.MSTest" Version="6.0.0" />
     <PackageReference Include="JustMock" Version="2023.1.117.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />

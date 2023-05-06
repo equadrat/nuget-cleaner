@@ -1,10 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using e2.Framework;
+﻿using e2.Framework;
 using e2.NuGet.Cleaner.Helpers;
-using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -25,9 +24,8 @@ namespace e2.NuGet.Cleaner.Components
         /// The instance.
         /// </returns>
         [Pure]
-        [NotNull]
         // ReSharper disable once UnusedParameter.Local
-        private ConfigSnapshotFactory CreateInstance([CanBeNull] NCObject _ = null, bool inconclusive = true)
+        private ConfigSnapshotFactory CreateInstance(NCObject? _ = null, bool inconclusive = true)
         {
             try
             {

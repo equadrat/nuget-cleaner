@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -10,10 +9,10 @@ namespace e2.NuGet.Cleaner.Models
     public sealed class PackageMetadata: IPackageMetadata
     {
         /// <inheritdoc />
-        public string PackageId {get; set;}
+        public string? PackageId {get; set;}
 
         /// <inheritdoc />
-        public string Owners {get; set;}
+        public string? Owners {get; set;}
 
         /// <inheritdoc />
         public bool IsListed {get; set;}
@@ -25,10 +24,10 @@ namespace e2.NuGet.Cleaner.Models
         public DateTimeOffset? PublishDate {get; set;}
 
         /// <inheritdoc />
-        public Version Version {get; set;}
+        public Version? Version {get; set;}
 
         /// <inheritdoc />
-        public string OriginalVersion {get; set;}
+        public string? OriginalVersion {get; set;}
 
         /// <inheritdoc />
         public bool IsPrerelease {get; set;}

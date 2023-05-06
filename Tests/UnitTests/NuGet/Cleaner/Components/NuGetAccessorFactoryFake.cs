@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Diagnostics;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -18,25 +17,21 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The token factory.
         /// </summary>
-        [NotNull]
-        private readonly ICoreTokenFactory _tokenFactory;
+        private readonly ICoreOwnerTokenFactory _tokenFactory;
 
         /// <summary>
         /// The thread pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreThreadPool _threadPool;
 
         /// <summary>
         /// The repositories ordered by their package source.
         /// </summary>
-        [NotNull]
         private readonly ConcurrentDictionary<string, NuGetRepository> _repositoryByPackageSource;
 
         /// <summary>
         /// The default repository
         /// </summary>
-        [NotNull]
         private readonly Lazy<NuGetRepository> _defaultRepository;
 
         /// <summary>
@@ -49,7 +44,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// threadPool
         /// </exception>
-        internal NuGetAccessorFactoryFake([NotNull] ICoreTokenFactory tokenFactory, [NotNull] ICoreThreadPool threadPool)
+        internal NuGetAccessorFactoryFake(ICoreOwnerTokenFactory tokenFactory, ICoreThreadPool threadPool)
         {
 #if DEBUG
             if (tokenFactory == null) throw new ArgumentNullException(nameof(tokenFactory));
@@ -62,7 +57,7 @@ namespace e2.NuGet.Cleaner.Components
         }
 
         /// <inheritdoc />
-        ICoreOwnerToken<INuGetAccessor> INuGetAccessorFactory.GetAccessor(string packageSource, string apiKey)
+        ICoreOwnerToken<INuGetAccessor> INuGetAccessorFactory.GetAccessor(string? packageSource, string apiKey)
         {
             if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
 
@@ -78,8 +73,7 @@ namespace e2.NuGet.Cleaner.Components
         /// The repository.
         /// </returns>
         [Pure]
-        [NotNull]
-        internal NuGetRepository GetRepository([CanBeNull] string packageSource)
+        internal NuGetRepository GetRepository(string? packageSource)
         {
             if (string.IsNullOrWhiteSpace(packageSource)) return this._defaultRepository.Value;
             return this._repositoryByPackageSource.GetOrAdd(packageSource, this.CreateRepository);
@@ -93,13 +87,13 @@ namespace e2.NuGet.Cleaner.Components
         /// <returns>
         /// <c>true</c> if the <paramref name="repository" /> exists; otherwise, <c>false</c>.
         /// </returns>
-        internal bool TryGetRepository([CanBeNull] string packageSource, out NuGetRepository repository)
+        internal bool TryGetRepository(string? packageSource, out NuGetRepository repository)
         {
             if (string.IsNullOrWhiteSpace(packageSource))
             {
                 if (!this._defaultRepository.IsValueCreated)
                 {
-                    repository = null;
+                    repository = null!;
                     return false;
                 }
 
@@ -107,7 +101,7 @@ namespace e2.NuGet.Cleaner.Components
                 return true;
             }
 
-            return this._repositoryByPackageSource.TryGetValue(packageSource, out repository);
+            return this._repositoryByPackageSource.TryGetValue(packageSource, out repository!);
         }
 
         /// <summary>
@@ -118,8 +112,7 @@ namespace e2.NuGet.Cleaner.Components
         /// The repository.
         /// </returns>
         [Pure]
-        [NotNull]
-        private NuGetRepository CreateRepository([CanBeNull] string packageSource)
+        private NuGetRepository CreateRepository(string? packageSource)
         {
             return new NuGetRepository(this._threadPool, packageSource);
         }

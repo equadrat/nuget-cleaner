@@ -1,10 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using e2.Framework;
+﻿using e2.Framework;
 using e2.Framework.Components;
 using e2.NuGet.Cleaner.Components;
-using JetBrains.Annotations;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace e2.NuGet.Cleaner
 {

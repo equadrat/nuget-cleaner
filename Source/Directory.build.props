@@ -1,63 +1,64 @@
 <Project>
-    <Import Project="..\company.build.props" />
-    <Import Project="..\product.build.props" />
+  <Import Project="..\company.build.props" />
+  <Import Project="..\product.build.props" />
 
-    <PropertyGroup>
-        <LangVersion>latest</LangVersion>
-        <ImplicitUsings>disable</ImplicitUsings>
-    </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
-        <OutputPath>..\bin\$(Configuration)</OutputPath>
-    </PropertyGroup>
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\bin\$(Configuration)</OutputPath>
+  </PropertyGroup>
 
-    <PropertyGroup Condition="Exists('$(AssemblyOriginatorKeyFilePath)')">
-        <SignAssembly>True</SignAssembly>
-        <AssemblyOriginatorKeyFile>$(AssemblyOriginatorKeyFilePath)</AssemblyOriginatorKeyFile>
-    </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(AssemblyOriginatorKeyFilePath)')">
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(AssemblyOriginatorKeyFilePath)</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
-        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    </PropertyGroup>
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <Folder Include="Properties\" />
-        <Folder Include="Properties\Build" />
-    </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="Properties\Build" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <Compile Include="..\..\AssemblyInfo.company.cs" Link="Properties\AssemblyInfo.company.cs" />
-        <Compile Include="..\..\AssemblyInfo.product.cs" Link="Properties\AssemblyInfo.product.cs" />
+  <ItemGroup>
+    <Compile Include="..\..\AssemblyInfo.company.cs" Link="Properties\AssemblyInfo.company.cs" />
+    <Compile Include="..\..\AssemblyInfo.product.cs" Link="Properties\AssemblyInfo.product.cs" />
 
-        <None Include="$(LicenseFilePath)" Link="Properties\License.md" />
-    </ItemGroup>
+    <None Include="$(LicenseFilePath)" Link="Properties\License.md" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <None Include="$(AssemblyOriginatorKeyFilePath)" Link="Properties\Build\$(AssemblyOriginatorKeyFileName)" Condition="Exists('$(AssemblyOriginatorKeyFilePath)')" />
+  <ItemGroup>
+    <None Include="$(AssemblyOriginatorKeyFilePath)" Link="Properties\Build\$(AssemblyOriginatorKeyFileName)" Condition="Exists('$(AssemblyOriginatorKeyFilePath)')" />
 
-        <None Include="..\..\company.build.props" Link="Properties\Build\company.build.props" />
-        <None Include="..\..\product.build.props" Link="Properties\Build\product.build.props" />
-        <None Include="..\Directory.build.props" Link="Properties\Build\Directory.build.props" />
+    <None Include="..\..\company.build.props" Link="Properties\Build\company.build.props" />
+    <None Include="..\..\product.build.props" Link="Properties\Build\product.build.props" />
+    <None Include="..\Directory.build.props" Link="Properties\Build\Directory.build.props" />
 
-        <None Include="..\..\NuGet.config" Link="Properties\Build\NuGet.config" />
-        
-        <None Include="$(CodeAnalysisRuleSet)" Link="Properties\Build\StyleCop.ruleset" />
+    <None Include="..\..\NuGet.config" Link="Properties\Build\NuGet.config" />
 
-        <EditorConfigFiles Include="$(SharedEditorConfigFilePath)" Link="Properties\Build\VisualStudio.editorconfig" />
-        <None Include="$(SharedFileNestingConfigFilePath)" Link="Properties\Build\VisualStudio.filenesting.json" />
-    </ItemGroup>
+    <None Include="$(CodeAnalysisRuleSet)" Link="Properties\Build\StyleCop.ruleset" />
 
-    <Target Name="CreateDefaultFolders" AfterTargets="PreBuildEvent">
-        <MakeDir Directories="$(ProjectDir)Properties" Condition="!Exists('$(ProjectDir)Properties')" />
-        <MakeDir Directories="$(ProjectDir)Properties\Build" Condition="!Exists('$(ProjectDir)Properties\Build')" />
-    </Target>
+    <EditorConfigFiles Include="$(SharedEditorConfigFilePath)" Link="Properties\Build\VisualStudio.editorconfig" />
+    <None Include="$(SharedFileNestingConfigFilePath)" Link="Properties\Build\VisualStudio.filenesting.json" />
+  </ItemGroup>
 
-    <Target Name="CopyEditorConfig" AfterTargets="ResolveProjectReferences">
-        <Copy SourceFiles="$(SharedEditorConfigFilePath)" DestinationFolder="..\.." SkipUnchangedFiles="true" />
-    </Target>
+  <Target Name="CreateDefaultFolders" AfterTargets="PreBuildEvent">
+    <MakeDir Directories="$(ProjectDir)Properties" Condition="!Exists('$(ProjectDir)Properties')" />
+    <MakeDir Directories="$(ProjectDir)Properties\Build" Condition="!Exists('$(ProjectDir)Properties\Build')" />
+  </Target>
 
-    <Target Name="CopyFileNestingConfig" AfterTargets="ResolveProjectReferences">
-        <Copy SourceFiles="$(SharedFileNestingConfigFilePath)" DestinationFolder="..\.." SkipUnchangedFiles="true" />
-    </Target>
+  <Target Name="CopyEditorConfig" AfterTargets="ResolveProjectReferences">
+    <Copy SourceFiles="$(SharedEditorConfigFilePath)" DestinationFolder="..\.." SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyFileNestingConfig" AfterTargets="ResolveProjectReferences">
+    <Copy SourceFiles="$(SharedFileNestingConfigFilePath)" DestinationFolder="..\.." SkipUnchangedFiles="true" />
+  </Target>
 </Project>

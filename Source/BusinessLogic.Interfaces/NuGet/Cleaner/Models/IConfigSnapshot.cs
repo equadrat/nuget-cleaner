@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -16,7 +16,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The sources.
         /// </value>
-        [NotNull]
         IReadOnlyDictionary<string, ISourceConfig> Sources {get;}
 
         /// <summary>
@@ -25,7 +24,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The API keys.
         /// </value>
-        [NotNull]
         IReadOnlyDictionary<string, IApiKeyConfig> ApiKeys {get;}
 
         /// <summary>
@@ -34,7 +32,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package cleanups.
         /// </value>
-        [NotNull]
         IReadOnlyDictionary<string, IPackageCleanupConfig> PackageCleanups {get;}
 
         /// <summary>
@@ -43,7 +40,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package sources.
         /// </value>
-        [NotNull]
         IReadOnlyList<IPackageSourceSnapshot> PackageSources {get;}
 
         /// <summary>
@@ -53,7 +49,6 @@ namespace e2.NuGet.Cleaner.Models
         /// The logging output.
         /// </returns>
         [Pure]
-        [NotNull]
         string GetLoggingOutput();
     }
 }

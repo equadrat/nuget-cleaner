@@ -1,9 +1,9 @@
 ﻿using e2.Framework.Components;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -16,67 +16,56 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The token factory.
         /// </summary>
-        [NotNull]
-        private readonly ICoreTokenFactory _tokenFactory;
+        private readonly ICoreOwnerTokenFactory _tokenFactory;
 
         /// <summary>
         /// The system time provider.
         /// </summary>
-        [NotNull]
         private readonly ICoreSystemTimeProvider _systemTimeProvider;
 
         /// <summary>
         /// The logger.
         /// </summary>
-        [NotNull]
         private readonly ILogger _logger;
 
         /// <summary>
         /// The NuGet accessor factory.
         /// </summary>
-        [NotNull]
         private readonly INuGetAccessorFactory _nuGetAccessorFactory;
 
         /// <summary>
         /// The configuration snapshot provider.
         /// </summary>
-        [NotNull]
         private readonly IConfigSnapshotProvider _configSnapshotProvider;
 
         /// <summary>
         /// The package aggregator.
         /// </summary>
-        [NotNull]
         private readonly IPackageAggregator _packageAggregator;
 
         /// <summary>
         /// The package publish date dictionary factory.
         /// </summary>
-        [NotNull]
         private readonly IPackagePublishDateDictionaryFactory _packagePublishDateDictionaryFactory;
 
         /// <summary>
         /// The package cleanup action decision maker.
         /// </summary>
-        [NotNull]
         private readonly IPackageCleanupActionDecisionMaker _packageCleanupActionDecisionMaker;
 
         /// <summary>
         /// The process packages task pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreInstancePool<ProcessPackagesTask> _processPackagesTaskPool;
 
         /// <summary>
         /// The metadata set pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreInstancePool<HashSet<IPackageMetadata>> _metadataSetPool;
 
         /// <summary>
         /// The package aggregation list pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreInstancePool<List<IPackageAggregation>> _packageAggregationListPool;
 
         /// <summary>
@@ -110,7 +99,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// packageCleanupActionDecisionMaker
         /// </exception>
-        public ProcessPackagesTaskFactory([NotNull] ICoreTokenFactory tokenFactory, [NotNull] ICoreSystemTimeProvider systemTimeProvider, [NotNull] ICoreInstancePoolFactory instancePoolFactory, [NotNull] ILogger logger, [NotNull] INuGetAccessorFactory nuGetAccessorFactory, [NotNull] IConfigSnapshotProvider configSnapshotProvider, [NotNull] IPackageAggregator packageAggregator, [NotNull] IPackagePublishDateDictionaryFactory packagePublishDateDictionaryFactory, [NotNull] IPackageCleanupActionDecisionMaker packageCleanupActionDecisionMaker)
+        public ProcessPackagesTaskFactory(ICoreOwnerTokenFactory tokenFactory, ICoreSystemTimeProvider systemTimeProvider, ICoreInstancePoolFactory instancePoolFactory, ILogger logger, INuGetAccessorFactory nuGetAccessorFactory, IConfigSnapshotProvider configSnapshotProvider, IPackageAggregator packageAggregator, IPackagePublishDateDictionaryFactory packagePublishDateDictionaryFactory, IPackageCleanupActionDecisionMaker packageCleanupActionDecisionMaker)
         {
             if (tokenFactory == null) throw new ArgumentNullException(nameof(tokenFactory));
             if (systemTimeProvider == null) throw new ArgumentNullException(nameof(systemTimeProvider));
@@ -148,7 +137,7 @@ namespace e2.NuGet.Cleaner.Components
         /// </summary>
         /// <param name="task">The task.</param>
         /// <exception cref="System.ArgumentNullException">task</exception>
-        private void ReleaseTask([NotNull] ProcessPackagesTask task)
+        private void ReleaseTask(ProcessPackagesTask task)
         {
             this._processPackagesTaskPool.Recycle(task);
         }
@@ -160,7 +149,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The task.
         /// </returns>
         [Pure]
-        [NotNull]
         private ProcessPackagesTask CreateProcessPackagesTask()
         {
             return new ProcessPackagesTask(this._systemTimeProvider, this._logger, this._nuGetAccessorFactory, this._configSnapshotProvider, this._packageAggregator, this._packagePublishDateDictionaryFactory, this._packageCleanupActionDecisionMaker, this._metadataSetPool, this._packageAggregationListPool);

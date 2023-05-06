@@ -3,13 +3,12 @@ using e2.Framework.Delegates;
 using e2.Framework.Helpers;
 using e2.Framework.MemberTemplates;
 using e2.NuGet.Cleaner.Helpers;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 using INuGetLogger = NuGet.Common.ILogger;
 using NuGetNullLogger = NuGet.Common.NullLogger;
 
@@ -28,8 +27,8 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (moduleRegistry == null) throw new ArgumentNullException(nameof(moduleRegistry));
 
-            moduleRegistry.RegisterMicrosoftExtensionsLoggingModule()
-                          .RegisterCoreAppSettingsConfigurationModule()
+            moduleRegistry.CoreFramework().RegisterMicrosoftExtensionsLoggingModule()
+                          .CoreFramework().RegisterAppSettingsConfigurationModule()
                           .RegisterBusinessLogicModule();
 
             base.RegisterDependencyModules(moduleRegistry);

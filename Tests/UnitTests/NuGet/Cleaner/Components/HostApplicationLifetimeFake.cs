@@ -1,12 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Exceptions;
 using e2.Framework.Models;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Hosting;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -31,7 +29,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The application stop request wait handle.
         /// </value>
-        [NotNull]
         internal CoreSharedWaitHandle ApplicationStopRequestWaitHandle {get;}
 
         /// <summary>
@@ -39,7 +36,7 @@ namespace e2.NuGet.Cleaner.Components
         /// </summary>
         /// <param name="lockFactory">The lock factory.</param>
         /// <exception cref="System.ArgumentNullException">lockFactory</exception>
-        public HostApplicationLifetimeFake([NotNull] ICoreLockFactory lockFactory)
+        public HostApplicationLifetimeFake(ICoreLockFactory lockFactory)
         {
             if (lockFactory == null) throw new ArgumentNullException(nameof(lockFactory));
 

@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Models
@@ -31,7 +30,7 @@ namespace e2.NuGet.Cleaner.Models
         /// or
         /// owners
         /// </exception>
-        internal PackageSourceSnapshot([NotNull] ISourceConfig source, [NotNull] IApiKeyConfig apiKey, [NotNull] IReadOnlyList<IPackageOwnerSnapshot> owners)
+        internal PackageSourceSnapshot(ISourceConfig source, IApiKeyConfig apiKey, IReadOnlyList<IPackageOwnerSnapshot> owners)
         {
 #if DEBUG
             if (source == null) throw new ArgumentNullException(nameof(source));

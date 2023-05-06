@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Delegates;
 using e2.Framework.Helpers;
 using e2.NuGet.Cleaner.Helpers;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Hosting;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -23,8 +21,8 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (moduleRegistry == null) throw new ArgumentNullException(nameof(moduleRegistry));
 
-            moduleRegistry.RegisterBusinessLogicModule();
-            moduleRegistry.RegisterTestFrameworkModule();
+            moduleRegistry.RegisterBusinessLogicModule()
+                          .TestFramework().RegisterBaseModule();
         }
 
         /// <inheritdoc />
@@ -45,7 +43,7 @@ namespace e2.NuGet.Cleaner.Components
         /// Registers the configuration provider.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        public virtual void RegisterConfigProvider([NotNull] ICoreIOCRegistry registry)
+        public virtual void RegisterConfigProvider(ICoreIOCRegistry registry)
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
@@ -60,7 +58,7 @@ namespace e2.NuGet.Cleaner.Components
         /// </summary>
         /// <param name="registry">The registry.</param>
         /// <exception cref="System.ArgumentNullException">registry</exception>
-        public virtual void RegisterNuGetAccessorFactory([NotNull] ICoreIOCRegistry registry)
+        public virtual void RegisterNuGetAccessorFactory(ICoreIOCRegistry registry)
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
@@ -75,7 +73,7 @@ namespace e2.NuGet.Cleaner.Components
         /// </summary>
         /// <param name="registry">The registry.</param>
         /// <exception cref="System.ArgumentNullException">registry</exception>
-        public virtual void RegisterHostApplicationLifetime([NotNull] ICoreIOCRegistry registry)
+        public virtual void RegisterHostApplicationLifetime(ICoreIOCRegistry registry)
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 

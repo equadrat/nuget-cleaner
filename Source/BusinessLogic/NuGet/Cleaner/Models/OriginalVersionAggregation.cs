@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Models
@@ -10,7 +9,7 @@ namespace e2.NuGet.Cleaner.Models
     internal sealed class OriginalVersionAggregation: IOriginalVersionAggregation
     {
         /// <inheritdoc />
-        public string OriginalVersion {get; set;}
+        public string? OriginalVersion {get; set;}
 
         /// <inheritdoc />
         public DateTimeOffset? PublishDate {get; set;}

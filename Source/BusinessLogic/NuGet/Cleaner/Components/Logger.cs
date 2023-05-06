@@ -1,8 +1,7 @@
 ﻿using e2.Framework.Components;
 using e2.Framework.Enums;
-using JetBrains.Annotations;
 using System;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System.Diagnostics.CodeAnalysis;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -63,7 +62,7 @@ namespace e2.NuGet.Cleaner.Components
         /// </summary>
         /// <param name="loggingContext">The logging context.</param>
         /// <exception cref="System.ArgumentNullException">loggingContext</exception>
-        public Logger([NotNull] ICoreLoggingContext loggingContext)
+        public Logger(ICoreLoggingContext loggingContext)
         {
             if (loggingContext == null) throw new ArgumentNullException(nameof(loggingContext));
 

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using e2.Framework;
+﻿using e2.Framework;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 
 // ReSharper disable once UseObjectOrCollectionInitializer
 #pragma warning disable IDE0028
@@ -29,9 +28,8 @@ namespace e2.NuGet.Cleaner.Components
         /// The instance.
         /// </returns>
         [Pure]
-        [NotNull]
         // ReSharper disable once UnusedParameter.Local
-        private ConfigSnapshotProvider CreateInstance([CanBeNull] NCObject _ = null, bool inconclusive = true)
+        private ConfigSnapshotProvider CreateInstance(NCObject? _ = null, bool inconclusive = true)
         {
             try
             {

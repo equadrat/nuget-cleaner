@@ -1,33 +1,33 @@
 <Project>
-    <Import Project="version.build.props" />
+  <Import Project="version.build.props" />
 
-    <PropertyGroup>
-        <DotNetStandardTargetFrameworks>netstandard2.1</DotNetStandardTargetFrameworks>
-        <DotNet7TargetFrameworks>net7.0</DotNet7TargetFrameworks>
-        
-        <ProjectStandardTargetFrameworks>$(DotNetStandardTargetFrameworks)</ProjectStandardTargetFrameworks>
-        <ProjectTargetFrameworks>$(DotNet7TargetFrameworks)</ProjectTargetFrameworks>
+  <PropertyGroup>
+    <DotNetStandardTargetFrameworks>netstandard2.1</DotNetStandardTargetFrameworks>
+    <DotNet7TargetFrameworks>net7.0</DotNet7TargetFrameworks>
 
-        <CheckEolTargetFramework>false</CheckEolTargetFramework>
-        <SuppressTfmSupportBuildWarnings>false</SuppressTfmSupportBuildWarnings>
+    <ProjectStandardTargetFrameworks>$(DotNetStandardTargetFrameworks)</ProjectStandardTargetFrameworks>
+    <ProjectTargetFrameworks>$(DotNet7TargetFrameworks)</ProjectTargetFrameworks>
 
-        <RunAnalyzers>true</RunAnalyzers>
-        <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-        <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
-        <CodeAnalysisRuleSet>..\..\CodeStyle\StyleCop\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
-        
-        <SharedEditorConfigFile>.editorconfig</SharedEditorConfigFile>
-        <SharedEditorConfigFilePath>..\..\CodeStyle\VisualStudio\$(SharedEditorConfigFile)</SharedEditorConfigFilePath>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <SuppressTfmSupportBuildWarnings>false</SuppressTfmSupportBuildWarnings>
 
-        <SharedFileNestingConfigFile>.filenesting.json</SharedFileNestingConfigFile>
-        <SharedFileNestingConfigFilePath>..\..\CodeStyle\VisualStudio\$(SharedFileNestingConfigFile)</SharedFileNestingConfigFilePath>
-        
-        <AssemblyOriginatorKeyFileName>equadrat.NuGet.Clearer.snk</AssemblyOriginatorKeyFileName>
-        <AssemblyOriginatorKeyFilePath>..\..\Build\Resources\$(AssemblyOriginatorKeyFileName)</AssemblyOriginatorKeyFilePath>
+    <RunAnalyzers>true</RunAnalyzers>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <CodeAnalysisRuleSet>..\..\CodeStyle\StyleCop\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
 
-        <LicenseFileName>$(SolutionName).License.md</LicenseFileName>
-        <LicenseFilePath>..\..\$(LicenseFileName)</LicenseFilePath>
+    <SharedEditorConfigFile>.editorconfig</SharedEditorConfigFile>
+    <SharedEditorConfigFilePath>..\..\CodeStyle\VisualStudio\$(SharedEditorConfigFile)</SharedEditorConfigFilePath>
 
-        <DefaultItemExcludes>$(DefaultItemExcludes);**\.gitkeep</DefaultItemExcludes>
-    </PropertyGroup>
+    <SharedFileNestingConfigFile>.filenesting.json</SharedFileNestingConfigFile>
+    <SharedFileNestingConfigFilePath>..\..\CodeStyle\VisualStudio\$(SharedFileNestingConfigFile)</SharedFileNestingConfigFilePath>
+
+    <AssemblyOriginatorKeyFileName>equadrat.NuGet.Clearer.snk</AssemblyOriginatorKeyFileName>
+    <AssemblyOriginatorKeyFilePath>..\..\Build\Resources\$(AssemblyOriginatorKeyFileName)</AssemblyOriginatorKeyFilePath>
+
+    <LicenseFileName>$(SolutionName).License.md</LicenseFileName>
+    <LicenseFilePath>..\..\$(LicenseFileName)</LicenseFilePath>
+
+    <DefaultItemExcludes>$(DefaultItemExcludes);**\.gitkeep</DefaultItemExcludes>
+  </PropertyGroup>
 </Project>

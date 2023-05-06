@@ -1,8 +1,8 @@
 ﻿using e2.Framework.Components;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -19,7 +19,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The dictionary.
         /// </returns>
         [Pure]
-        [NotNull]
         private static PackagePublishDateDictionary CreateDictionary()
         {
             return new PackagePublishDateDictionary();
@@ -28,13 +27,11 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The token factory.
         /// </summary>
-        [NotNull]
-        private readonly ICoreTokenFactory _tokenFactory;
+        private readonly ICoreOwnerTokenFactory _tokenFactory;
 
         /// <summary>
         /// The dictionary pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreInstancePool<PackagePublishDateDictionary> _dictionaryPool;
 
         /// <summary>
@@ -47,7 +44,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// instancePoolFactory
         /// </exception>
-        public PackagePublishDateDictionaryFactory([NotNull] ICoreTokenFactory tokenFactory, [NotNull] ICoreInstancePoolFactory instancePoolFactory)
+        public PackagePublishDateDictionaryFactory(ICoreOwnerTokenFactory tokenFactory, ICoreInstancePoolFactory instancePoolFactory)
         {
             if (tokenFactory == null) throw new ArgumentNullException(nameof(tokenFactory));
             if (instancePoolFactory == null) throw new ArgumentNullException(nameof(instancePoolFactory));
@@ -72,7 +69,7 @@ namespace e2.NuGet.Cleaner.Components
         /// Releases the dictionary.
         /// </summary>
         /// <param name="dictionary">The dictionary.</param>
-        private void ReleaseDictionary([NotNull] PackagePublishDateDictionary dictionary)
+        private void ReleaseDictionary(PackagePublishDateDictionary dictionary)
         {
             if (!this._dictionaryPool.Recycle(dictionary)) PackagePublishDateDictionary.Cleanup(dictionary);
         }

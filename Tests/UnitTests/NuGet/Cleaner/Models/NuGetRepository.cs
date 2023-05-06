@@ -1,15 +1,14 @@
-﻿using System;
+﻿using e2.Framework.Helpers;
+using e2.Framework.MemberTemplates;
+using e2.Framework.Models;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using e2.Framework.Helpers;
-using e2.Framework.MemberTemplates;
-using e2.Framework.Models;
-using JetBrains.Annotations;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -28,31 +27,26 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package source.
         /// </value>
-        [CanBeNull]
-        internal string PackageSource {get;}
+        internal string? PackageSource {get;}
 
         /// <summary>
         /// The thread pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreThreadPool _threadPool;
 
         /// <summary>
         /// The lock.
         /// </summary>
-        [NotNull]
         private readonly ReaderWriterLockSlim _lock;
 
         /// <summary>
         /// The API keys.
         /// </summary>
-        [NotNull]
         private readonly HashSet<string> _apiKeys;
 
         /// <summary>
         /// The packages.
         /// </summary>
-        [NotNull]
         private readonly List<IPackageMetadata> _packages;
 
         /// <summary>
@@ -61,7 +55,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <param name="threadPool">The thread pool.</param>
         /// <param name="packageSource">The package source.</param>
         /// <exception cref="System.ArgumentNullException">threadPool</exception>
-        internal NuGetRepository([NotNull] ICoreThreadPool threadPool, [CanBeNull] string packageSource)
+        internal NuGetRepository(ICoreThreadPool threadPool, string? packageSource)
         {
             if (threadPool == null) throw new ArgumentNullException(nameof(threadPool));
 
@@ -94,7 +88,7 @@ namespace e2.NuGet.Cleaner.Models
         /// </summary>
         /// <param name="apiKey">The API key.</param>
         /// <exception cref="System.ArgumentNullException">apiKey</exception>
-        internal void AddApiKey([NotNull] string apiKey)
+        internal void AddApiKey(string apiKey)
         {
             if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
 
@@ -119,7 +113,7 @@ namespace e2.NuGet.Cleaner.Models
         /// </returns>
         /// <exception cref="System.ArgumentNullException">apiKey</exception>
         [Pure]
-        internal bool IsApiKeyValid([NotNull] string apiKey)
+        internal bool IsApiKeyValid(string apiKey)
         {
             if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
 
@@ -136,7 +130,7 @@ namespace e2.NuGet.Cleaner.Models
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<IPackageMetadata> GetPackagesAsync(string owner, Func<string, bool> packageIdPredicate, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<IPackageMetadata> GetPackagesAsync(string owner, Func<string, bool>? packageIdPredicate, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
             if (packageIdPredicate == null) throw new ArgumentNullException(nameof(packageIdPredicate));
@@ -162,7 +156,7 @@ namespace e2.NuGet.Cleaner.Models
                         this._lock.ExitReadLock();
                     }
 
-                    return packages.Where(x => packageIdPredicate.Invoke(x.PackageId));
+                    return packages.Where(x => (x.PackageId != null) && packageIdPredicate.Invoke(x.PackageId));
                 });
 
             foreach (var metadata in result)
@@ -216,7 +210,7 @@ namespace e2.NuGet.Cleaner.Models
         }
 
         /// <inheritdoc />
-        public void Add([NotNull] IPackageMetadata item)
+        public void Add(IPackageMetadata item)
         {
             if (item == null) throw new ArgumentNullException(nameof(item));
 
@@ -239,8 +233,6 @@ namespace e2.NuGet.Cleaner.Models
         /// The packages.
         /// </returns>
         [Pure]
-        [NotNull]
-        [ItemNotNull]
         internal IReadOnlyList<IPackageMetadata> GetPackages()
         {
             this._lock.EnterReadLock();

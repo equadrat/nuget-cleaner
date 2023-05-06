@@ -1,5 +1,4 @@
 ﻿using e2.Framework.Models;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Models
@@ -16,7 +15,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package identifier pattern.
         /// </value>
-        [NotNull]
         ICorePredicate<string> PackageIdPattern {get;}
 
         /// <summary>
@@ -25,7 +23,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package group.
         /// </value>
-        [NotNull]
         IPackageGroupConfig PackageGroup {get;}
 
         /// <summary>
@@ -34,7 +31,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package cleanup.
         /// </value>
-        [NotNull]
         IPackageCleanupConfig PackageCleanup {get;}
     }
 }

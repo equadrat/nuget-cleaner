@@ -1,7 +1,7 @@
 ﻿using e2.Framework;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -20,8 +20,7 @@ namespace e2.NuGet.Cleaner.Models
         /// The addresses.
         /// </returns>
         [Pure]
-        [NotNull]
-        private static IEnumerable<PackageAggregationAddress> GetAddresses(int versionIndex, bool isPreviewVersion, [NotNull] IList<IOriginalVersionAggregation> originalVersions)
+        private static IEnumerable<PackageAggregationAddress> GetAddresses(int versionIndex, bool isPreviewVersion, IList<IOriginalVersionAggregation> originalVersions)
         {
             var numberOfOriginalVersions = originalVersions.Count;
             for (var originalVersionIndex = 0; originalVersionIndex < numberOfOriginalVersions; originalVersionIndex++)
@@ -37,7 +36,7 @@ namespace e2.NuGet.Cleaner.Models
         }
 
         /// <inheritdoc />
-        public string PackageId {get; set;}
+        public string? PackageId {get; set;}
 
         /// <inheritdoc />
         public IList<IVersionAggregation> Versions {get;}
@@ -51,7 +50,7 @@ namespace e2.NuGet.Cleaner.Models
         }
 
         /// <inheritdoc />
-        public IEnumerable<PackageAggregationAddress> GetAddresses(NCObject _ = null, bool includePreviewVersions = false, bool includeRegularVersions = false)
+        public IEnumerable<PackageAggregationAddress> GetAddresses(NCObject? _ = null, bool includePreviewVersions = false, bool includeRegularVersions = false)
         {
             if (!includeRegularVersions && !includePreviewVersions) yield break;
 

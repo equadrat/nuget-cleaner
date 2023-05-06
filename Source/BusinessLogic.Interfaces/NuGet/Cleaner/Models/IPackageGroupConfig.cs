@@ -1,5 +1,4 @@
 ﻿using e2.Framework.Enums;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Models
@@ -16,7 +15,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The source identifier.
         /// </value>
-        string SourceId {get;}
+        string? SourceId {get;}
 
         /// <summary>
         /// Gets the API key identifier.
@@ -24,7 +23,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The API key identifier.
         /// </value>
-        string ApiKeyId {get;}
+        string? ApiKeyId {get;}
 
         /// <summary>
         /// Gets the owner.
@@ -32,7 +31,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The owner.
         /// </value>
-        string Owner {get;}
+        string? Owner {get;}
 
         /// <summary>
         /// Gets the package identifier pattern.
@@ -40,7 +39,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package identifier pattern.
         /// </value>
-        string PackageIdPattern {get;}
+        string? PackageIdPattern {get;}
 
         /// <summary>
         /// Gets the package identifier match mode.
@@ -56,6 +55,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package cleanup identifier.
         /// </value>
-        string PackageCleanupId {get;}
+        string? PackageCleanupId {get;}
     }
 }

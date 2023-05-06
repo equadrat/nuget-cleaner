@@ -1,7 +1,7 @@
 ﻿using e2.Framework;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -17,7 +17,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The package identifier.
         /// </value>
-        string PackageId {get; set;}
+        string? PackageId {get; set;}
 
         /// <summary>
         /// Gets the versions.
@@ -25,7 +25,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The versions.
         /// </value>
-        [NotNull]
         IList<IVersionAggregation> Versions {get;}
 
         /// <summary>
@@ -38,8 +37,7 @@ namespace e2.NuGet.Cleaner.Models
         /// The addresses.
         /// </returns>
         [Pure]
-        [NotNull]
-        IEnumerable<PackageAggregationAddress> GetAddresses([CanBeNull] NCObject _ = null, bool includePreviewVersions = false, bool includeRegularVersions = false);
+        IEnumerable<PackageAggregationAddress> GetAddresses(NCObject? _ = null, bool includePreviewVersions = false, bool includeRegularVersions = false);
 
         /// <summary>
         /// Resolves the specified address.

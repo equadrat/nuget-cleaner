@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,7 +15,6 @@ namespace e2.NuGet.Cleaner.Models
         /// </summary>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The state of the asynchronous process.</returns>
-        [NotNull]
         Task RunAsync(CancellationToken cancellationToken);
     }
 }

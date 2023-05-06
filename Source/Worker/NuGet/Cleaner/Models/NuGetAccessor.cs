@@ -1,19 +1,19 @@
 ﻿using e2.Framework.Components;
 using e2.Framework.Exceptions;
 using e2.NuGet.Cleaner.Components;
-using JetBrains.Annotations;
 using NuGet.Configuration;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 using INuGetLogger = NuGet.Common.ILogger;
 
 namespace e2.NuGet.Cleaner.Models
@@ -34,7 +34,7 @@ namespace e2.NuGet.Cleaner.Models
         /// </summary>
         /// <param name="accessor">The accessor.</param>
         /// <exception cref="System.ArgumentNullException">accessor</exception>
-        internal static void Cleanup([NotNull] NuGetAccessor accessor)
+        internal static void Cleanup(NuGetAccessor accessor)
         {
 #if DEBUG
             if (accessor == null) throw new ArgumentNullException(nameof(accessor));
@@ -50,7 +50,6 @@ namespace e2.NuGet.Cleaner.Models
         /// The API key.
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [NotNull]
         private string ApiKey => this._apiKey ?? throw new CoreInvalidOperationException(this);
 
         /// <summary>
@@ -60,38 +59,32 @@ namespace e2.NuGet.Cleaner.Models
         /// The NuGet protocol factory.
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [NotNull]
         private SourceRepository NuGetProtocolFactory => this._nuGetProtocolFactory ?? throw new CoreInvalidOperationException(this);
 
         /// <summary>
         /// The logger.
         /// </summary>
-        [NotNull]
         private readonly ILogger _logger;
 
         /// <summary>
         /// The NuGet logger.
         /// </summary>
-        [NotNull]
         private readonly INuGetLogger _nuGetLogger;
 
         /// <summary>
         /// The package metadata factory.
         /// </summary>
-        [NotNull]
         private readonly ICoreIOCInstanceFactory<IPackageMetadata> _packageMetadataFactory;
 
         /// <summary>
         /// The backing field of <see cref="NuGetProtocolFactory" />.
         /// </summary>
-        [CanBeNull]
-        private SourceRepository _nuGetProtocolFactory;
+        private SourceRepository? _nuGetProtocolFactory;
 
         /// <summary>
         /// The backing field of <see cref="ApiKey" />.
         /// </summary>
-        [CanBeNull]
-        private string _apiKey;
+        private string? _apiKey;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NuGetAccessor" /> class.
@@ -106,7 +99,7 @@ namespace e2.NuGet.Cleaner.Models
         /// or
         /// packageMetadataFactory
         /// </exception>
-        internal NuGetAccessor([NotNull] ILogger logger, [NotNull] INuGetLogger nuGetLogger, [NotNull] ICoreIOCInstanceFactory<IPackageMetadata> packageMetadataFactory)
+        internal NuGetAccessor(ILogger logger, INuGetLogger nuGetLogger, ICoreIOCInstanceFactory<IPackageMetadata> packageMetadataFactory)
         {
 #if DEBUG
             if (logger == null) throw new ArgumentNullException(nameof(logger));
@@ -124,7 +117,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <param name="packageSource">The package source.</param>
         /// <param name="apiKey">The API key.</param>
         /// <exception cref="System.ArgumentNullException">apiKey</exception>
-        internal void Init([CanBeNull] string packageSource, [NotNull] string apiKey)
+        internal void Init(string? packageSource, string apiKey)
         {
             if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
 
@@ -135,7 +128,7 @@ namespace e2.NuGet.Cleaner.Models
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<IPackageMetadata> GetPackagesAsync(string owner, Func<string, bool> packageIdPredicate, [EnumeratorCancellation] CancellationToken cancellationToken)
+        public async IAsyncEnumerable<IPackageMetadata> GetPackagesAsync(string owner, Func<string, bool>? packageIdPredicate, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             await foreach (var ownerPackageMetadata in this.QueryOwnerPackages(owner, cancellationToken))
             {
@@ -143,7 +136,7 @@ namespace e2.NuGet.Cleaner.Models
 
                 if ((packageIdPredicate != null) && !packageIdPredicate.Invoke(ownerPackageIdentity.Id))
                 {
-                    this._logger.NuGetQueryPackageVersionsSkip.IfEnabled?.Log((string)null, ownerPackageIdentity.Id);
+                    this._logger.NuGetQueryPackageVersionsSkip.IfEnabled?.Log((string?)null, ownerPackageIdentity.Id);
                     continue;
                 }
 
@@ -186,7 +179,7 @@ namespace e2.NuGet.Cleaner.Models
             if (packageId == null) throw new ArgumentNullException(nameof(packageId));
             if (originalVersion == null) throw new ArgumentNullException(nameof(originalVersion));
 
-            this._logger.NuGetDeletePackageVersionBegin.IfEnabled?.Log((string)null, packageId, originalVersion);
+            this._logger.NuGetDeletePackageVersionBegin.IfEnabled?.Log((string?)null, packageId, originalVersion);
 
             try
             {
@@ -203,7 +196,7 @@ namespace e2.NuGet.Cleaner.Models
                 throw;
             }
 
-            this._logger.NuGetDeletePackageVersionEnd.IfEnabled?.Log((string)null, packageId, originalVersion);
+            this._logger.NuGetDeletePackageVersionEnd.IfEnabled?.Log((string?)null, packageId, originalVersion);
         }
 
         /// <summary>
@@ -214,10 +207,9 @@ namespace e2.NuGet.Cleaner.Models
         /// The API key.
         /// </returns>
         [Pure]
-        [NotNull]
         private string UnlistPackageGetApiKey(string packageSource)
         {
-            this._logger.NuGetDeletePackageVersionApiKeyRequested.IfEnabled?.Log((string)null, packageSource);
+            this._logger.NuGetDeletePackageVersionApiKeyRequested.IfEnabled?.Log((string?)null, packageSource);
             return this.ApiKey;
         }
 
@@ -244,10 +236,9 @@ namespace e2.NuGet.Cleaner.Models
         /// The owner package metadata.
         /// </returns>
         [Pure]
-        [NotNull]
         private async IAsyncEnumerable<IPackageSearchMetadata> QueryOwnerPackages(string owner, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
-            this._logger.NuGetQueryPackagesByOwnerBegin.IfEnabled?.Log((string)null, owner);
+            this._logger.NuGetQueryPackagesByOwnerBegin.IfEnabled?.Log((string?)null, owner);
 
             var resource = this.NuGetProtocolFactory.GetResource<PackageSearchResource>() ?? throw new CoreTypeNotSupportedException(typeof(PackageSearchResource));
             var searchTerm = $"owner:{owner}";
@@ -286,10 +277,9 @@ namespace e2.NuGet.Cleaner.Models
         /// The package version metadata.
         /// </returns>
         [Pure]
-        [NotNull]
         private async IAsyncEnumerable<IPackageSearchMetadata> QueryPackageVersions(string packageId, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
-            this._logger.NuGetQueryPackageVersionsBegin.IfEnabled?.Log((string)null, packageId);
+            this._logger.NuGetQueryPackageVersionsBegin.IfEnabled?.Log((string?)null, packageId);
 
             var resource = this.NuGetProtocolFactory.GetResource<PackageMetadataResource>() ?? throw new CoreTypeNotSupportedException(typeof(PackageMetadataResource));
 

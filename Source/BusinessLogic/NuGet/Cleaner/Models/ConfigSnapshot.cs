@@ -1,7 +1,7 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,7 +21,6 @@ namespace e2.NuGet.Cleaner.Models
         /// The text.
         /// </returns>
         [Pure]
-        [NotNull]
         private static string FormatActive(bool isActive)
         {
             return isActive ? "active" : "inactive";
@@ -38,7 +37,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <param name="textSelector">The text selector.</param>
         /// <param name="title">The title.</param>
         /// <param name="header">The header.</param>
-        private static void WriteItems<TKey, TItem>([NotNull] IndentedTextWriter writer, [NotNull] IReadOnlyDictionary<TKey, TItem> items, [NotNull] ICollection<TItem> activeItems, Func<TItem, string> textSelector, [NotNull] string title, [NotNull] string header)
+        private static void WriteItems<TKey, TItem>(IndentedTextWriter writer, IReadOnlyDictionary<TKey, TItem> items, ICollection<TItem> activeItems, Func<TItem, string?> textSelector, string title, string header)
             where TItem: class
         {
             writer.WriteLine($"{title}:");
@@ -88,7 +87,7 @@ namespace e2.NuGet.Cleaner.Models
         /// or
         /// packageSources
         /// </exception>
-        internal ConfigSnapshot([NotNull] IReadOnlyDictionary<string, ISourceConfig> sources, [NotNull] IReadOnlyDictionary<string, IApiKeyConfig> apiKeys, [NotNull] IReadOnlyDictionary<string, IPackageCleanupConfig> packageCleanups, [NotNull] IReadOnlyList<IPackageSourceSnapshot> packageSources)
+        internal ConfigSnapshot(IReadOnlyDictionary<string, ISourceConfig> sources, IReadOnlyDictionary<string, IApiKeyConfig> apiKeys, IReadOnlyDictionary<string, IPackageCleanupConfig> packageCleanups, IReadOnlyList<IPackageSourceSnapshot> packageSources)
         {
 #if DEBUG
             if (sources == null) throw new ArgumentNullException(nameof(sources));
@@ -138,7 +137,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <param name="activeSources">The active sources.</param>
         /// <param name="activeApiKeys">The active API keys.</param>
         /// <param name="activePackageCleanups">The active package cleanups.</param>
-        private void WritePackageGroups([NotNull] IndentedTextWriter writer, [NotNull] HashSet<ISourceConfig> activeSources, [NotNull] HashSet<IApiKeyConfig> activeApiKeys, [NotNull] HashSet<IPackageCleanupConfig> activePackageCleanups)
+        private void WritePackageGroups(IndentedTextWriter writer, HashSet<ISourceConfig> activeSources, HashSet<IApiKeyConfig> activeApiKeys, HashSet<IPackageCleanupConfig> activePackageCleanups)
         {
             writer.WriteLine("PackageGroups:");
 
@@ -190,9 +189,9 @@ namespace e2.NuGet.Cleaner.Models
         /// </summary>
         /// <param name="writer">The writer.</param>
         /// <param name="activeSources">The active sources.</param>
-        private void WriteSources([NotNull] IndentedTextWriter writer, [NotNull] HashSet<ISourceConfig> activeSources)
+        private void WriteSources(IndentedTextWriter writer, HashSet<ISourceConfig> activeSources)
         {
-            WriteItems(writer, this.Sources, activeSources, x => x.SourceId, "Sources", "SourceId");
+            WriteItems(writer, this.Sources, activeSources, x => x?.SourceId, "Sources", "SourceId");
         }
 
         /// <summary>
@@ -200,9 +199,9 @@ namespace e2.NuGet.Cleaner.Models
         /// </summary>
         /// <param name="writer">The writer.</param>
         /// <param name="activeApiKeys">The active API keys.</param>
-        private void WriteApiKeys([NotNull] IndentedTextWriter writer, [NotNull] HashSet<IApiKeyConfig> activeApiKeys)
+        private void WriteApiKeys(IndentedTextWriter writer, HashSet<IApiKeyConfig> activeApiKeys)
         {
-            WriteItems(writer, this.ApiKeys, activeApiKeys, x => x.ApiKeyId, "ApiKeys", "ApiKeyId");
+            WriteItems(writer, this.ApiKeys, activeApiKeys, x => x?.ApiKeyId, "ApiKeys", "ApiKeyId");
         }
 
         /// <summary>
@@ -210,9 +209,9 @@ namespace e2.NuGet.Cleaner.Models
         /// </summary>
         /// <param name="writer">The writer.</param>
         /// <param name="activePackageCleanups">The active package cleanups.</param>
-        private void WritePackageCleanups([NotNull] IndentedTextWriter writer, [NotNull] HashSet<IPackageCleanupConfig> activePackageCleanups)
+        private void WritePackageCleanups(IndentedTextWriter writer, HashSet<IPackageCleanupConfig> activePackageCleanups)
         {
-            WriteItems(writer, this.PackageCleanups, activePackageCleanups, x => x.PackageCleanupId, "PackageCleanups", "PackageCleanupId");
+            WriteItems(writer, this.PackageCleanups, activePackageCleanups, x => x?.PackageCleanupId, "PackageCleanups", "PackageCleanupId");
         }
     }
 }

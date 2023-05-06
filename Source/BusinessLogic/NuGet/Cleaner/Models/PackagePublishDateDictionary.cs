@@ -1,5 +1,4 @@
 ﻿using e2.Framework.Exceptions;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,7 +15,7 @@ namespace e2.NuGet.Cleaner.Models
         /// </summary>
         /// <param name="dictionary">The dictionary.</param>
         /// <exception cref="System.ArgumentNullException">dictionary</exception>
-        internal static void Cleanup([NotNull] PackagePublishDateDictionary dictionary)
+        internal static void Cleanup(PackagePublishDateDictionary dictionary)
         {
 #if DEBUG
             if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
@@ -32,20 +31,17 @@ namespace e2.NuGet.Cleaner.Models
         /// The package owner snapshot.
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [NotNull]
         private IPackageOwnerSnapshot PackageOwnerSnapshot => this._packageOwnerSnapshot ?? throw new CoreInvalidOperationException(this);
 
         /// <summary>
         /// The publish dates ordered by their package and version.
         /// </summary>
-        [NotNull]
         private readonly Dictionary<(int PackageGroupIndex, Version Version, string OriginalVersion), DateTimeOffset> _publishDateByVersion;
 
         /// <summary>
         /// The backing field of <see cref="PackageOwnerSnapshot" />.
         /// </summary>
-        [CanBeNull]
-        private IPackageOwnerSnapshot _packageOwnerSnapshot;
+        private IPackageOwnerSnapshot? _packageOwnerSnapshot;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PackagePublishDateDictionary" /> class.
@@ -61,7 +57,7 @@ namespace e2.NuGet.Cleaner.Models
         /// </summary>
         /// <param name="packageOwnerSnapshot">The package owner snapshot.</param>
         /// <exception cref="System.ArgumentNullException">packageOwnerSnapshot</exception>
-        internal void Init([NotNull] IPackageOwnerSnapshot packageOwnerSnapshot)
+        internal void Init(IPackageOwnerSnapshot packageOwnerSnapshot)
         {
 #if DEBUG
             if (packageOwnerSnapshot == null) throw new ArgumentNullException(nameof(packageOwnerSnapshot));

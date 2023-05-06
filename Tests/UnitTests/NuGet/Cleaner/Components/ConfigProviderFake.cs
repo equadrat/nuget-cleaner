@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using e2.Framework.Components;
+﻿using e2.Framework.Components;
 using e2.Framework.Enums;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -27,7 +25,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The backing field of <see cref="Changed" />.
         /// </summary>
-        [NotNull]
         private readonly ICoreEvent _changed;
         #endregion
 
@@ -35,31 +32,27 @@ namespace e2.NuGet.Cleaner.Components
         public TimeSpan? WorkerProcessInterval {get; set;}
 
         /// <inheritdoc />
-        public eTaskSchedulerOperatorMode? TaskSchedulerOperatorMode {get; set;}
+        public eCoreTaskSchedulerOperatorMode? TaskSchedulerOperatorMode {get; set;}
 
         /// <inheritdoc cref="IConfigProvider.Sources" />
-        [NotNull]
         public List<ISourceConfig> Sources {get;}
 
         /// <inheritdoc />
         IReadOnlyList<ISourceConfig> IConfigProvider.Sources => this.Sources.AsReadOnly();
 
         /// <inheritdoc cref="IConfigProvider.ApiKeys" />
-        [NotNull]
         public List<IApiKeyConfig> ApiKeys {get;}
 
         /// <inheritdoc />
         IReadOnlyList<IApiKeyConfig> IConfigProvider.ApiKeys => this.ApiKeys.AsReadOnly();
 
         /// <inheritdoc cref="PackageCleanups" />
-        [NotNull]
         public List<IPackageCleanupConfig> PackageCleanups {get;}
 
         /// <inheritdoc />
         IReadOnlyList<IPackageCleanupConfig> IConfigProvider.PackageCleanups => this.PackageCleanups.AsReadOnly();
 
         /// <inheritdoc cref="IConfigProvider.PackageGroups" />
-        [NotNull]
         public List<IPackageGroupConfig> PackageGroups {get;}
 
         /// <inheritdoc />
@@ -68,8 +61,7 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The token factory.
         /// </summary>
-        [NotNull]
-        private readonly ICoreTokenFactory _tokenFactory;
+        private readonly ICoreOwnerTokenFactory _tokenFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigProviderFake" /> class.
@@ -81,7 +73,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// eventFactory
         /// </exception>
-        public ConfigProviderFake([NotNull] ICoreTokenFactory tokenFactory, [NotNull] ICoreEventFactory eventFactory)
+        public ConfigProviderFake(ICoreOwnerTokenFactory tokenFactory, ICoreEventFactory eventFactory)
         {
             if (tokenFactory == null) throw new ArgumentNullException(nameof(tokenFactory));
             if (eventFactory == null) throw new ArgumentNullException(nameof(eventFactory));

@@ -1,7 +1,7 @@
 ﻿using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -20,7 +20,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The accessor.
         /// </returns>
         [Pure]
-        [NotNull]
-        ICoreOwnerToken<INuGetAccessor> GetAccessor([CanBeNull] string packageSource, [NotNull] string apiKey);
+        ICoreOwnerToken<INuGetAccessor> GetAccessor(string? packageSource, string apiKey);
     }
 }

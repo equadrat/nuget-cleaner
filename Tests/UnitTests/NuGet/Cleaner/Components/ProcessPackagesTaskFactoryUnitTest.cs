@@ -1,15 +1,14 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using e2.Framework;
+﻿using e2.Framework;
 using e2.Framework.Components;
 using e2.Framework.Helpers;
 using e2.NuGet.Cleaner.Helpers;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
+using System.Linq;
+using System.Threading;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -30,9 +29,8 @@ namespace e2.NuGet.Cleaner.Components
         /// The instance.
         /// </returns>
         [Pure]
-        [NotNull]
         // ReSharper disable once UnusedParameter.Local
-        private ProcessPackagesTaskFactory CreateInstance([CanBeNull] NCObject _ = null, bool inconclusive = true)
+        private ProcessPackagesTaskFactory CreateInstance(NCObject? _ = null, bool inconclusive = true)
         {
             try
             {

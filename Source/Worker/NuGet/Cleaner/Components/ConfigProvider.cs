@@ -3,14 +3,13 @@ using e2.Framework.Enums;
 using e2.Framework.Helpers;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -32,7 +31,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The backing field of <see cref="Changed" />.
         /// </summary>
-        [NotNull]
         private readonly ICoreEvent _changed;
         #endregion
 
@@ -96,8 +94,7 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The change callback token.
         /// </value>
-        [CanBeNull]
-        private IDisposable ChangeCallbackToken
+        private IDisposable? ChangeCallbackToken
         {
             set
             {
@@ -119,33 +116,31 @@ namespace e2.NuGet.Cleaner.Components
         /// The backing field of <see cref="ChangeCallbackToken" />.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [CanBeNull]
-        private IDisposable _changeCallbackToken;
+        private IDisposable? _changeCallbackToken;
         #endregion
 
         /// <inheritdoc />
         public TimeSpan? WorkerProcessInterval => this._configuration.GetSection("Worker").GetValue<TimeSpan?>("ProcessInterval");
 
         /// <inheritdoc />
-        public eTaskSchedulerOperatorMode? TaskSchedulerOperatorMode => this._configuration.GetSection("TaskScheduler").GetValue<eTaskSchedulerOperatorMode?>("OperatorMode");
+        public eCoreTaskSchedulerOperatorMode? TaskSchedulerOperatorMode => this._configuration.GetSection("TaskScheduler").GetValue<eCoreTaskSchedulerOperatorMode?>("OperatorMode");
 
         /// <inheritdoc />
-        public IReadOnlyList<ISourceConfig> Sources => this._configuration.GetSection("Sources").GetChildren().Select(x => x.Get<SourceConfig>()).AsReadOnly();
+        public IReadOnlyList<ISourceConfig> Sources => this._configuration.GetSection("Sources").GetChildren().Select(x => x.Get<SourceConfig>()!).AsReadOnly();
 
         /// <inheritdoc />
-        public IReadOnlyList<IApiKeyConfig> ApiKeys => this._configuration.GetSection("ApiKeys").GetChildren().Select(x => x.Get<ApiKeyConfig>()).AsReadOnly();
+        public IReadOnlyList<IApiKeyConfig> ApiKeys => this._configuration.GetSection("ApiKeys").GetChildren().Select(x => x.Get<ApiKeyConfig>()!).AsReadOnly();
 
         /// <inheritdoc />
-        public IReadOnlyList<IPackageCleanupConfig> PackageCleanups => this._configuration.GetSection("PackageCleanups").GetChildren().Select(x => x.Get<PackageCleanupConfig>()).AsReadOnly();
+        public IReadOnlyList<IPackageCleanupConfig> PackageCleanups => this._configuration.GetSection("PackageCleanups").GetChildren().Select(x => x.Get<PackageCleanupConfig>()!).AsReadOnly();
 
         /// <inheritdoc />
-        public IReadOnlyList<IPackageGroupConfig> PackageGroups => this._configuration.GetSection("PackageGroups").GetChildren().Select(x => x.Get<PackageGroupConfig>()).AsReadOnly();
+        public IReadOnlyList<IPackageGroupConfig> PackageGroups => this._configuration.GetSection("PackageGroups").GetChildren().Select(x => x.Get<PackageGroupConfig>()!).AsReadOnly();
 
         /// <summary>
         /// The token factory.
         /// </summary>
-        [NotNull]
-        private readonly ICoreTokenFactory _tokenFactory;
+        private readonly ICoreOwnerTokenFactory _tokenFactory;
 
         /// <summary>
         /// The configuration.
@@ -155,7 +150,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The lock.
         /// </summary>
-        [NotNull]
         private readonly CoreExclusiveLockSlim _lock;
 
         /// <summary>
@@ -174,7 +168,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// configuration
         /// </exception>
-        public ConfigProvider([NotNull] ICoreTokenFactory tokenFactory, [NotNull] ICoreEventFactory eventFactory, [NotNull] ICoreLockFactory lockFactory, [NotNull] IConfiguration configuration)
+        public ConfigProvider(ICoreOwnerTokenFactory tokenFactory, ICoreEventFactory eventFactory, ICoreLockFactory lockFactory, IConfiguration configuration)
         {
             if (tokenFactory == null) throw new ArgumentNullException(nameof(tokenFactory));
             if (eventFactory == null) throw new ArgumentNullException(nameof(eventFactory));
@@ -220,7 +214,7 @@ namespace e2.NuGet.Cleaner.Components
         /// Handles the changed event of the Configuration.
         /// </summary>
         /// <param name="state">The state.</param>
-        private void Configuration_Changed(object state)
+        private void Configuration_Changed(object? state)
         {
             this.OnChanged();
         }

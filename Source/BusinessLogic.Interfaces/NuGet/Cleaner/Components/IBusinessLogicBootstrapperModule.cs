@@ -1,5 +1,4 @@
 ﻿using e2.Framework.Components;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Components
@@ -20,48 +19,48 @@ namespace e2.NuGet.Cleaner.Components
         /// Registers the process packages task factory.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterProcessPackagesTaskFactory([NotNull] ICoreIOCRegistry registry);
+        void RegisterProcessPackagesTaskFactory(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Registers the logger.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterLogger([NotNull] ICoreIOCRegistry registry);
+        void RegisterLogger(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Registers the configuration snapshot factory.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterConfigSnapshotFactory([NotNull] ICoreIOCRegistry registry);
+        void RegisterConfigSnapshotFactory(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Registers the configuration snapshot provider.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterConfigSnapshotProvider([NotNull] ICoreIOCRegistry registry);
+        void RegisterConfigSnapshotProvider(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Registers the package aggregator.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterPackageAggregator([NotNull] ICoreIOCRegistry registry);
+        void RegisterPackageAggregator(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Registers the package publish date dictionary factory.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterPackagePublishDateDictionaryFactory([NotNull] ICoreIOCRegistry registry);
+        void RegisterPackagePublishDateDictionaryFactory(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Registers the package cleanup action decision maker.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterPackageCleanupActionDecisionMaker([NotNull] ICoreIOCRegistry registry);
+        void RegisterPackageCleanupActionDecisionMaker(ICoreIOCRegistry registry);
 
         /// <summary>
         /// Registers the models.
         /// </summary>
         /// <param name="registry">The registry.</param>
-        void RegisterModels([NotNull] ICoreIOCRegistry registry);
+        void RegisterModels(ICoreIOCRegistry registry);
     }
 }

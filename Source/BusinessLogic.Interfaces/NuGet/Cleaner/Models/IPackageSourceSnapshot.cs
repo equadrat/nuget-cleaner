@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Models
@@ -16,7 +15,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The source.
         /// </value>
-        [NotNull]
         ISourceConfig Source {get;}
 
         /// <summary>
@@ -25,7 +23,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The API key.
         /// </value>
-        [NotNull]
         IApiKeyConfig ApiKey {get;}
 
         /// <summary>
@@ -34,7 +31,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The owners.
         /// </value>
-        [NotNull]
         IReadOnlyList<IPackageOwnerSnapshot> Owners {get;}
     }
 }

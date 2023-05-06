@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -20,6 +20,6 @@ namespace e2.NuGet.Cleaner.Models
         /// The publish date.
         /// </returns>
         [Pure]
-        DateTimeOffset? GetPublishDate([NotNull] string packageId, [NotNull] Version version, [NotNull] string originalVersion, DateTimeOffset? publishDate);
+        DateTimeOffset? GetPublishDate(string packageId, Version version, string originalVersion, DateTimeOffset? publishDate);
     }
 }

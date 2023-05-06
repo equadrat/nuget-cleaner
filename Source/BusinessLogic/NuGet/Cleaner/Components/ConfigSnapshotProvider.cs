@@ -1,5 +1,4 @@
 ﻿using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Components
@@ -13,26 +12,22 @@ namespace e2.NuGet.Cleaner.Components
         /// <summary>
         /// The logger.
         /// </summary>
-        [NotNull]
         private readonly ILogger _logger;
 
         /// <summary>
         /// The configuration provider.
         /// </summary>
-        [NotNull]
         private readonly IConfigProvider _configProvider;
 
         /// <summary>
         /// The configuration snapshot factory.
         /// </summary>
-        [NotNull]
         private readonly IConfigSnapshotFactory _configSnapshotFactory;
 
         /// <summary>
         /// The configuration snapshot.
         /// </summary>
-        [CanBeNull]
-        private volatile IConfigSnapshot _configSnapshot;
+        private volatile IConfigSnapshot? _configSnapshot;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigSnapshotProvider" /> class.
@@ -47,7 +42,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// configSnapshotFactory
         /// </exception>
-        public ConfigSnapshotProvider([NotNull] ILogger logger, [NotNull] IConfigProvider configProvider, [NotNull] IConfigSnapshotFactory configSnapshotFactory)
+        public ConfigSnapshotProvider(ILogger logger, IConfigProvider configProvider, IConfigSnapshotFactory configSnapshotFactory)
         {
             if (logger == null) throw new ArgumentNullException(nameof(logger));
             if (configProvider == null) throw new ArgumentNullException(nameof(configProvider));

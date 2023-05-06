@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -10,9 +9,9 @@ namespace e2.NuGet.Cleaner.Models
     public sealed class ApiKeyConfig: IApiKeyConfig
     {
         /// <inheritdoc />
-        public string ApiKeyId {get; set;}
+        public string? ApiKeyId {get; set;}
 
         /// <inheritdoc />
-        public string ApiKey {get; set;}
+        public string? ApiKey {get; set;}
     }
 }

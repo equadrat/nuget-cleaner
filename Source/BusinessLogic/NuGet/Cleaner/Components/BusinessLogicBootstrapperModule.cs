@@ -3,7 +3,6 @@ using e2.Framework.Components;
 using e2.Framework.Delegates;
 using e2.Framework.Helpers;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 
@@ -22,7 +21,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (moduleRegistry == null) throw new ArgumentNullException(nameof(moduleRegistry));
 
-            moduleRegistry.RegisterCoreFrameworkModule();
+            moduleRegistry.CoreFramework().RegisterBaseModule();
 
             base.RegisterDependencyModules(moduleRegistry);
         }
@@ -48,7 +47,7 @@ namespace e2.NuGet.Cleaner.Components
         }
 
         /// <inheritdoc />
-        public virtual void RegisterWorkerService([NotNull] ICoreIOCRegistry registry)
+        public virtual void RegisterWorkerService(ICoreIOCRegistry registry)
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 

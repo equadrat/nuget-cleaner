@@ -1,5 +1,4 @@
 ﻿using e2.Framework.Models;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Models
@@ -31,7 +30,7 @@ namespace e2.NuGet.Cleaner.Models
         /// or
         /// packageCleanup
         /// </exception>
-        internal PackageGroupSnapshot([NotNull] ICorePredicate<string> packageIdPattern, [NotNull] IPackageGroupConfig packageGroup, [NotNull] IPackageCleanupConfig packageCleanup)
+        internal PackageGroupSnapshot(ICorePredicate<string> packageIdPattern, IPackageGroupConfig packageGroup, IPackageCleanupConfig packageCleanup)
         {
 #if DEBUG
             if (packageIdPattern == null) throw new ArgumentNullException(nameof(packageIdPattern));

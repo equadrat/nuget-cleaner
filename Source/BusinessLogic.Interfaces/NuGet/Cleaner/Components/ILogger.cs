@@ -1,5 +1,4 @@
 ﻿using e2.Framework.Components;
-using JetBrains.Annotations;
 using System;
 
 namespace e2.NuGet.Cleaner.Components
@@ -16,7 +15,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent ProcessPackagesBegin {get;}
 
         /// <summary>
@@ -25,7 +23,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent ProcessPackagesFailed {get;}
 
         /// <summary>
@@ -34,7 +31,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent ProcessPackagesEnd {get;}
 
         /// <summary>
@@ -43,7 +39,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent ProcessPackagesConfigLoaded {get;}
 
         /// <summary>
@@ -52,7 +47,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetQueryPackagesByOwnerBegin {get;}
 
         /// <summary>
@@ -61,7 +55,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetQueryPackagesByOwnerNextPage {get;}
 
         /// <summary>
@@ -70,7 +63,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetQueryPackagesByOwnerEnd {get;}
 
         /// <summary>
@@ -79,7 +71,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetQueryPackageVersionsSkip {get;}
 
         /// <summary>
@@ -88,7 +79,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetQueryPackageVersionsBegin {get;}
 
         /// <summary>
@@ -97,7 +87,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetQueryPackageVersionsEnd {get;}
 
         /// <summary>
@@ -106,7 +95,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetDeletePackageVersionBegin {get;}
 
         /// <summary>
@@ -115,7 +103,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetDeletePackageVersionApiKeyRequested {get;}
 
         /// <summary>
@@ -124,7 +111,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetDeletePackageVersionConfirmation {get;}
 
         /// <summary>
@@ -133,7 +119,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetDeletePackageVersionFail {get;}
 
         /// <summary>
@@ -142,7 +127,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The logging event.
         /// </value>
-        [NotNull]
         ICoreLoggingEvent NuGetDeletePackageVersionEnd {get;}
     }
 }

@@ -1,7 +1,7 @@
 ﻿using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -18,7 +18,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The token to release the task.
         /// </returns>
         [Pure]
-        [NotNull]
         ICoreOwnerToken<IProcessPackagesTask> GetTask();
     }
 }

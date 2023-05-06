@@ -1,9 +1,10 @@
 ﻿using e2.Framework.Components;
 using e2.Framework.Helpers;
+using e2.Framework.Models;
 using e2.NuGet.Cleaner.Components;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,55 +19,46 @@ namespace e2.NuGet.Cleaner.Models
         /// <summary>
         /// The system time provider.
         /// </summary>
-        [NotNull]
         private readonly ICoreSystemTimeProvider _systemTimeProvider;
 
         /// <summary>
         /// The logger.
         /// </summary>
-        [NotNull]
         private readonly ILogger _logger;
 
         /// <summary>
         /// The NuGet accessor factory.
         /// </summary>
-        [NotNull]
         private readonly INuGetAccessorFactory _nuGetAccessorFactory;
 
         /// <summary>
         /// The configuration snapshot provider.
         /// </summary>
-        [NotNull]
         private readonly IConfigSnapshotProvider _configSnapshotProvider;
 
         /// <summary>
         /// The package aggregator.
         /// </summary>
-        [NotNull]
         private readonly IPackageAggregator _packageAggregator;
 
         /// <summary>
         /// The package publish date dictionary factory.
         /// </summary>
-        [NotNull]
         private readonly IPackagePublishDateDictionaryFactory _packagePublishDateDictionaryFactory;
 
         /// <summary>
         /// The package cleanup action decision maker.
         /// </summary>
-        [NotNull]
         private readonly IPackageCleanupActionDecisionMaker _packageCleanupActionDecisionMaker;
 
         /// <summary>
         /// The metadata set pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreInstancePool<HashSet<IPackageMetadata>> _metadataSetPool;
 
         /// <summary>
         /// The package aggregation list pool.
         /// </summary>
-        [NotNull]
         private readonly ICoreInstancePool<List<IPackageAggregation>> _packageAggregationListPool;
 
         /// <summary>
@@ -100,7 +92,7 @@ namespace e2.NuGet.Cleaner.Models
         /// or
         /// packageAggregationListPool
         /// </exception>
-        internal ProcessPackagesTask([NotNull] ICoreSystemTimeProvider systemTimeProvider, [NotNull] ILogger logger, [NotNull] INuGetAccessorFactory nuGetAccessorFactory, [NotNull] IConfigSnapshotProvider configSnapshotProvider, [NotNull] IPackageAggregator packageAggregator, [NotNull] IPackagePublishDateDictionaryFactory packagePublishDateDictionaryFactory, [NotNull] IPackageCleanupActionDecisionMaker packageCleanupActionDecisionMaker, [NotNull] ICoreInstancePool<HashSet<IPackageMetadata>> metadataSetPool, [NotNull] ICoreInstancePool<List<IPackageAggregation>> packageAggregationListPool)
+        internal ProcessPackagesTask(ICoreSystemTimeProvider systemTimeProvider, ILogger logger, INuGetAccessorFactory nuGetAccessorFactory, IConfigSnapshotProvider configSnapshotProvider, IPackageAggregator packageAggregator, IPackagePublishDateDictionaryFactory packagePublishDateDictionaryFactory, IPackageCleanupActionDecisionMaker packageCleanupActionDecisionMaker, ICoreInstancePool<HashSet<IPackageMetadata>> metadataSetPool, ICoreInstancePool<List<IPackageAggregation>> packageAggregationListPool)
         {
 #if DEBUG
             if (systemTimeProvider == null) throw new ArgumentNullException(nameof(systemTimeProvider));
@@ -137,13 +129,13 @@ namespace e2.NuGet.Cleaner.Models
 
                 foreach (var packageSource in configSnapshot.PackageSources)
                 {
-                    using (this._nuGetAccessorFactory.GetAccessor(packageSource.Source.PackageSource, packageSource.ApiKey.ApiKey).Deconstruct(out var accessor))
+                    using (this._nuGetAccessorFactory.GetAccessor(packageSource.Source.PackageSource, packageSource.ApiKey.ApiKey!).Deconstruct(out var accessor))
                     {
                         await foreach (var unlistPackageVersion in this.GetDelistingPackages(accessor, packageSource.Owners, now, cancellationToken))
                         {
                             try
                             {
-                                await accessor.UnlistPackageAsync(unlistPackageVersion.PackageId, unlistPackageVersion.OriginalVersion, cancellationToken);
+                                await accessor.UnlistPackageAsync(unlistPackageVersion.PackageId!, unlistPackageVersion.OriginalVersion!, cancellationToken);
                             }
                             catch (OperationCanceledException)
                             {
@@ -180,8 +172,6 @@ namespace e2.NuGet.Cleaner.Models
         /// The packages for delisting.
         /// </returns>
         [Pure]
-        [NotNull]
-        [ItemNotNull]
         private async IAsyncEnumerable<IPackageMetadata> GetDelistingPackages(INuGetAccessor accessor, IReadOnlyList<IPackageOwnerSnapshot> owners, DateTimeOffset now, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var numberOfOwners = owners.Count;
@@ -207,8 +197,6 @@ namespace e2.NuGet.Cleaner.Models
         /// The packages for delisting.
         /// </returns>
         [Pure]
-        [NotNull]
-        [ItemNotNull]
         private async IAsyncEnumerable<IPackageMetadata> GetDelistingPackages(INuGetAccessor accessor, IPackageOwnerSnapshot owner, DateTimeOffset now, [EnumeratorCancellation] CancellationToken cancellationToken)
         {
             var uniquePackages = this._metadataSetPool.GetInstance();
@@ -254,9 +242,7 @@ namespace e2.NuGet.Cleaner.Models
         /// The packages for delisting.
         /// </returns>
         [Pure]
-        [NotNull]
-        [ItemNotNull]
-        private IEnumerable<IPackageMetadata> GetDelistingPackages([NotNull] IPackageOwnerSnapshot owner, [NotNull] IReadOnlyList<IPackageAggregation> aggregatedPackages, [NotNull] IReadOnlyList<IPackageGroupSnapshot> packageGroups, DateTimeOffset now, CancellationToken cancellationToken)
+        private IEnumerable<IPackageMetadata> GetDelistingPackages(IPackageOwnerSnapshot owner, IReadOnlyList<IPackageAggregation> aggregatedPackages, IReadOnlyList<IPackageGroupSnapshot> packageGroups, DateTimeOffset now, CancellationToken cancellationToken)
         {
             // Process each aggregated package.
             var numberOfPackageAggregations = aggregatedPackages.Count;
@@ -265,7 +251,7 @@ namespace e2.NuGet.Cleaner.Models
                 cancellationToken.ThrowIfCancellationRequested();
 
                 var packageAggregation = aggregatedPackages[i];
-                var packageGroupIndex = owner.GetPackageGroupIndex(packageAggregation.PackageId);
+                var packageGroupIndex = packageAggregation.PackageId != null ? owner.GetPackageGroupIndex(packageAggregation.PackageId) : -1;
                 var packageCleanup = packageGroups[packageGroupIndex].PackageCleanup;
 
                 foreach (var packageAggregationAddress in packageAggregation.GetAddresses(includePreviewVersions: true, includeRegularVersions: true))
@@ -283,7 +269,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <param name="owner">The owner.</param>
         /// <param name="uniquePackages">The unique packages.</param>
         /// <param name="aggregatedPackages">The aggregated packages.</param>
-        private void AggregatePackages([NotNull] IPackageOwnerSnapshot owner, [NotNull] IEnumerable<IPackageMetadata> uniquePackages, [NotNull] ICollection<IPackageAggregation> aggregatedPackages)
+        private void AggregatePackages(IPackageOwnerSnapshot owner, IEnumerable<IPackageMetadata> uniquePackages, ICollection<IPackageAggregation> aggregatedPackages)
         {
             using (this._packagePublishDateDictionaryFactory.GetPublishDateDictionary(owner).Deconstruct(out var packagePublishDateDictionary))
             {

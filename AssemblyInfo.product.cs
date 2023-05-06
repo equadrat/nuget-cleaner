@@ -1,9 +1,8 @@
 using e2;
-using JetBrains.Annotations;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 [assembly: AssemblyCulture(ProductAssemblyInfo.Culture)]
 [assembly: CLSCompliant(ProductAssemblyInfo.ClsCompliant)]
@@ -46,7 +45,7 @@ namespace e2
         /// <remarks>
         /// Use Major.Minor.Revision.
         /// </remarks>
-        public const string Version = "1.0.1";
+        public const string Version = "1.0.2";
 
         /// <summary>
         /// The build identifier.

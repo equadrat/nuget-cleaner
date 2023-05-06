@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -18,7 +18,7 @@ namespace e2.NuGet.Cleaner.Models
         /// The package group index or <c>-1</c> if the package identifier doesn't exist.
         /// </returns>
         [Pure]
-        private static int GetPackageGroupIndex([NotNull] IReadOnlyList<IPackageGroupSnapshot> packageGroups, [NotNull] string packageId)
+        private static int GetPackageGroupIndex(IReadOnlyList<IPackageGroupSnapshot> packageGroups, string packageId)
         {
             var numberOfPackageGroups = packageGroups.Count;
             for (var i = 0; i < numberOfPackageGroups; i++)
@@ -45,7 +45,7 @@ namespace e2.NuGet.Cleaner.Models
         /// or
         /// packageGroups
         /// </exception>
-        internal PackageOwnerSnapshot([NotNull] string owner, [NotNull] IReadOnlyList<IPackageGroupSnapshot> packageGroups)
+        internal PackageOwnerSnapshot(string owner, IReadOnlyList<IPackageGroupSnapshot> packageGroups)
         {
 #if DEBUG
             if (owner == null) throw new ArgumentNullException(nameof(owner));

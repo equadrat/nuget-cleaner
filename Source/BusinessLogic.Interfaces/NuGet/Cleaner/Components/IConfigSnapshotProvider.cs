@@ -1,6 +1,6 @@
 ﻿using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -17,7 +17,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The configuration snapshot.
         /// </returns>
         [Pure]
-        [NotNull]
         IConfigSnapshot GetConfigSnapshot();
     }
 }

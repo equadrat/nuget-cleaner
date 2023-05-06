@@ -1,10 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using e2.Framework;
+﻿using e2.Framework;
 using e2.NuGet.Cleaner.Components;
-using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Models
 {
@@ -25,9 +24,8 @@ namespace e2.NuGet.Cleaner.Models
         /// The instance.
         /// </returns>
         [Pure]
-        [NotNull]
         // ReSharper disable once UnusedParameter.Local
-        private PackageMetadata CreateInstance([CanBeNull] NCObject _ = null, bool inconclusive = true)
+        private PackageMetadata CreateInstance(NCObject? _ = null, bool inconclusive = true)
         {
             try
             {

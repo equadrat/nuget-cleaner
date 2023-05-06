@@ -1,9 +1,9 @@
 ﻿using e2.Framework.Enums;
 using e2.Framework.Models;
 using e2.NuGet.Cleaner.Models;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace e2.NuGet.Cleaner.Components
 {
@@ -32,7 +32,7 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The task scheduler operator mode.
         /// </value>
-        eTaskSchedulerOperatorMode? TaskSchedulerOperatorMode {get;}
+        eCoreTaskSchedulerOperatorMode? TaskSchedulerOperatorMode {get;}
 
         /// <summary>
         /// Gets the sources.
@@ -40,7 +40,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The sources.
         /// </value>
-        [NotNull]
         IReadOnlyList<ISourceConfig> Sources {get;}
 
         /// <summary>
@@ -49,7 +48,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The API keys.
         /// </value>
-        [NotNull]
         IReadOnlyList<IApiKeyConfig> ApiKeys {get;}
 
         /// <summary>
@@ -58,7 +56,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The package cleanups.
         /// </value>
-        [NotNull]
         IReadOnlyList<IPackageCleanupConfig> PackageCleanups {get;}
 
         /// <summary>
@@ -67,7 +64,6 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The package groups.
         /// </value>
-        [NotNull]
         IReadOnlyList<IPackageGroupConfig> PackageGroups {get;}
 
         /// <summary>
@@ -77,7 +73,6 @@ namespace e2.NuGet.Cleaner.Components
         /// The token to disable this instance.
         /// </returns>
         [Pure]
-        [NotNull]
         ICoreOwnerToken Enable();
     }
 }

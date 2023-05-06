@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace e2.NuGet.Cleaner.Models
@@ -16,7 +15,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The original version.
         /// </value>
-        string OriginalVersion {get; set;}
+        string? OriginalVersion {get; set;}
 
         /// <summary>
         /// Gets or sets the publish date.
@@ -32,7 +31,6 @@ namespace e2.NuGet.Cleaner.Models
         /// <value>
         /// The packages.
         /// </value>
-        [NotNull]
         IList<IPackageMetadata> Packages {get;}
     }
 }

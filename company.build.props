@@ -1,6 +1,6 @@
 <Project>
-    <PropertyGroup>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <Authors>equadrat</Authors>
-    </PropertyGroup>
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Authors>equadrat</Authors>
+  </PropertyGroup>
 </Project>
