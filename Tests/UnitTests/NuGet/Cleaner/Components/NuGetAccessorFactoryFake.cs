@@ -44,7 +44,7 @@ namespace e2.NuGet.Cleaner.Components
         /// or
         /// threadPool
         /// </exception>
-        internal NuGetAccessorFactoryFake(ICoreOwnerTokenFactory tokenFactory, ICoreThreadPool threadPool)
+        public NuGetAccessorFactoryFake(ICoreOwnerTokenFactory tokenFactory, ICoreThreadPool threadPool)
         {
 #if DEBUG
             if (tokenFactory == null) throw new ArgumentNullException(nameof(tokenFactory));

@@ -2,6 +2,7 @@
 using e2.Framework.Delegates;
 using e2.Framework.Helpers;
 using e2.Framework.MemberTemplates;
+using e2.NuGet.Cleaner.Components;
 using e2.NuGet.Cleaner.Helpers;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Reflection;
 using INuGetLogger = NuGet.Common.ILogger;
 using NuGetNullLogger = NuGet.Common.NullLogger;
 
-namespace e2.NuGet.Cleaner.Components
+namespace e2.NuGet.Cleaner.BootstrapperModules
 {
     /// <summary>
     /// This class represents the bootstrapper module of the worker.
@@ -53,7 +54,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<IConfigProvider>()) registry.Register<IConfigProvider>().AsSingletonOf<ConfigProvider>();
+            registry.TryRegister<IConfigProvider>()?.AsSingletonOf<ConfigProvider>();
         }
 
         /// <inheritdoc />
@@ -61,7 +62,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<INuGetLogger>()) registry.Register<INuGetLogger>().AsSingletonOf(NuGetNullLogger.Instance);
+            registry.TryRegister<INuGetLogger>()?.AsSingletonOf(NuGetNullLogger.Instance);
         }
 
         /// <inheritdoc />
@@ -69,7 +70,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<INuGetAccessorFactory>()) registry.Register<INuGetAccessorFactory>().AsSingletonOf<NuGetAccessorFactory>();
+            registry.TryRegister<INuGetAccessorFactory>()?.AsSingletonOf<NuGetAccessorFactory>();
         }
 
         /// <inheritdoc />
@@ -105,7 +106,11 @@ namespace e2.NuGet.Cleaner.Components
                 var currentDirectory = Environment.CurrentDirectory;
                 var logFilePath = Path.Combine(currentDirectory, logFileName);
 
-                var loggingTextFileTarget = CoreLoggingTextFileTarget.Create(factory, logFilePath, maxBackupFiles: 10, maxFileSize: 128 * 1024 * 1024);
+                // var loggingTextFileTarget = CoreLoggingTextFileTarget.Create(factory, logFilePath, maxBackupFiles: 10, maxFileSize: 128 * 1024 * 1024);
+                var lockFactory = factory.GetInstanceOf<ICoreLockFactory>();
+                var entryTextFormatter = factory.GetInstanceOf<ICoreLoggingEntryTextFormatter>();
+                var systemTimeProvider = factory.GetInstanceOf<ICoreSystemTimeProvider>();
+                var loggingTextFileTarget = new CoreLoggingTextFileTarget(logFilePath, lockFactory, entryTextFormatter, systemTimeProvider, maxBackupFiles: 10, maxFileSize: 128 * 1024 * 1024);
                 lifetimeObjects.Push(loggingContext.Attach(loggingTextFileTarget));
             }
         }

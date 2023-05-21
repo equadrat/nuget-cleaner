@@ -23,16 +23,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="equadrat.Framework.Core" Version="6.0.0" />
-    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="6.0.0" />
-    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.Configuration" Version="6.0.0" />
-    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.Hosting" Version="6.0.0" />
-    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="equadrat.Framework.Core" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.Configuration" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.DependencyInjection" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.Hosting" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.Logging" Version="6.0.3" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.0" />
-    <PackageReference Include="NuGet.Protocol" Version="6.5.0" />
+    <PackageReference Include="NuGet.Protocol" Version="6.6.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

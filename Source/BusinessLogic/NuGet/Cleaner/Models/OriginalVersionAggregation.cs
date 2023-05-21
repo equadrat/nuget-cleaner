@@ -20,7 +20,7 @@ namespace e2.NuGet.Cleaner.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="OriginalVersionAggregation" /> class.
         /// </summary>
-        internal OriginalVersionAggregation()
+        public OriginalVersionAggregation()
         {
             this.Packages = new List<IPackageMetadata>();
         }

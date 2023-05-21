@@ -1,13 +1,14 @@
 ﻿using e2.Framework.Components;
 using e2.Framework.Delegates;
 using e2.Framework.Helpers;
+using e2.NuGet.Cleaner.Components;
 using e2.NuGet.Cleaner.Helpers;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace e2.NuGet.Cleaner.Components
+namespace e2.NuGet.Cleaner.BootstrapperModules
 {
     /// <summary>
     /// This class represents the bootstrapper for unit tests.
@@ -21,8 +22,8 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (moduleRegistry == null) throw new ArgumentNullException(nameof(moduleRegistry));
 
-            moduleRegistry.RegisterBusinessLogicModule()
-                          .TestFramework().RegisterBaseModule();
+            moduleRegistry.TestFramework().RegisterBaseModule()
+                          .RegisterBusinessLogicModule();
         }
 
         /// <inheritdoc />
@@ -47,10 +48,11 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.CanGetInstanceOf<IConfigProvider>()) return;
+            var registrationSuccessor = registry.TryRegister<IConfigProvider>();
+            if (registrationSuccessor == null) return;
 
-            if (!registry.CanGetInstanceOf<ConfigProviderFake>()) registry.Register<ConfigProviderFake>().AsSingleton();
-            registry.Register<IConfigProvider>().AsRouteTo<ConfigProviderFake>();
+            registry.TryRegister<ConfigProviderFake>()?.AsSingleton();
+            registrationSuccessor.AsRouteTo<ConfigProviderFake>();
         }
 
         /// <summary>
@@ -62,10 +64,11 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.CanGetInstanceOf<INuGetAccessorFactory>()) return;
+            var registrationSuccessor = registry.TryRegister<INuGetAccessorFactory>();
+            if (registrationSuccessor == null) return;
 
-            if (!registry.CanGetInstanceOf<NuGetAccessorFactoryFake>()) registry.Register<NuGetAccessorFactoryFake>().AsSingleton();
-            registry.Register<INuGetAccessorFactory>().AsRouteTo<NuGetAccessorFactoryFake>();
+            registry.TryRegister<NuGetAccessorFactoryFake>()?.AsSingleton();
+            registrationSuccessor.AsRouteTo<NuGetAccessorFactoryFake>();
         }
 
         /// <summary>
@@ -77,10 +80,11 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (registry.CanGetInstanceOf<IHostApplicationLifetime>()) return;
+            var registrationSuccessor = registry.TryRegister<IHostApplicationLifetime>();
+            if (registrationSuccessor == null) return;
 
-            if (!registry.CanGetInstanceOf<HostApplicationLifetimeFake>()) registry.Register<HostApplicationLifetimeFake>().AsSingleton();
-            registry.Register<IHostApplicationLifetime>().AsRouteTo<HostApplicationLifetimeFake>();
+            registry.TryRegister<HostApplicationLifetimeFake>()?.AsSingleton();
+            registrationSuccessor.AsRouteTo<HostApplicationLifetimeFake>();
         }
     }
 }

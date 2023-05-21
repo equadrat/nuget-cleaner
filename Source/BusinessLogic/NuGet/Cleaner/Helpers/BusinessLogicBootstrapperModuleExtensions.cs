@@ -1,4 +1,5 @@
 ﻿using e2.Framework.Components;
+using e2.NuGet.Cleaner.BootstrapperModules;
 using e2.NuGet.Cleaner.Components;
 using System;
 

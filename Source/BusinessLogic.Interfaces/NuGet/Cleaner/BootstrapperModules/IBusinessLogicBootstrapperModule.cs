@@ -1,7 +1,7 @@
 ﻿using e2.Framework.Components;
 using System;
 
-namespace e2.NuGet.Cleaner.Components
+namespace e2.NuGet.Cleaner.BootstrapperModules
 {
     /// <summary>
     /// This interface describes the business logic bootstrapper module.

@@ -1,6 +1,9 @@
 using e2.Framework.Components;
+using e2.Framework.Fluent;
 using e2.Framework.Helpers;
+using e2.NuGet.Cleaner.BootstrapperModules;
 using e2.NuGet.Cleaner.Components;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,31 +23,31 @@ namespace e2.NuGet.Cleaner
         /// <param name="args">The arguments.</param>
         private static void Main(string[] args)
         {
-            var registry = new CoreIOCRegistry();
-            var factory = registry.Factory;
-
-            var bootstrapper = factory.CreateInstanceOf<ICoreBootstrapper>();
+            var bootstrapper = new CoreBootstrapper();
             bootstrapper.ModuleRegistry.RegisterModule<WorkerBootstrapperModule>();
 
-            using (bootstrapper.Startup(registry))
-            {
-                var host = Host.CreateDefaultBuilder(args)
-                               .UseServiceProviderFactory(registry)
-                               .UseWindowsService()
-                               .UseSystemd()
-                               .ConfigureLogging(
-                                   logging =>
-                                   {
-                                       logging.ClearProviders().AddConsole();
-                                   })
-                               .ConfigureServices(
-                                   services =>
-                                   {
-                                       services.UseCoreLogging();
-                                   })
-                               .Build();
+            ICoreBootstrapperStartupFactorySelector bootstrapperStartup = null!;
 
-                var configProvider = factory.GetInstanceOf<IConfigProvider>();
+            var host = Host.CreateDefaultBuilder(args)
+                           .UseWindowsService()
+                           .UseSystemd()
+                           .ConfigureLogging(
+                               logging =>
+                               {
+                                   logging.ClearProviders().AddConsole();
+                               })
+                           .ConfigureServices(
+                               services =>
+                               {
+                                   services.UseCoreLogging();
+                                   bootstrapperStartup = bootstrapper.Startup().Register(services);
+                                   services.AddHostedService(ServiceProviderServiceExtensions.GetRequiredService<IWorkerService>);
+                               })
+                           .Build();
+
+            using (bootstrapperStartup.Init(host.Services))
+            {
+                var configProvider = host.Services.GetRequiredService<IConfigProvider>();
                 using (configProvider.Enable())
                 {
                     host.Run();

@@ -2,11 +2,12 @@
 using e2.Framework.Components;
 using e2.Framework.Delegates;
 using e2.Framework.Helpers;
+using e2.NuGet.Cleaner.Components;
 using e2.NuGet.Cleaner.Models;
 using System;
 using System.Collections.Generic;
 
-namespace e2.NuGet.Cleaner.Components
+namespace e2.NuGet.Cleaner.BootstrapperModules
 {
     /// <summary>
     /// This class represents the business logic bootstrapper module.
@@ -51,7 +52,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<IWorkerService>()) registry.Register<IWorkerService>().AsSingletonOf<WorkerService>();
+            registry.TryRegister<IWorkerService>()?.AsSingletonOf<WorkerService>();
         }
 
         /// <inheritdoc />
@@ -59,7 +60,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<IProcessPackagesTaskFactory>()) registry.Register<IProcessPackagesTaskFactory>().AsSingletonOf<ProcessPackagesTaskFactory>();
+            registry.TryRegister<IProcessPackagesTaskFactory>()?.AsSingletonOf<ProcessPackagesTaskFactory>();
         }
 
         /// <inheritdoc />
@@ -67,7 +68,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<ILogger>()) registry.Register<ILogger>().AsSingletonOf<Logger>();
+            registry.TryRegister<ILogger>()?.AsSingletonOf<Logger>();
         }
 
         /// <inheritdoc />
@@ -75,7 +76,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<IConfigSnapshotFactory>()) registry.Register<IConfigSnapshotFactory>().AsSingletonOf<ConfigSnapshotFactory>();
+            registry.TryRegister<IConfigSnapshotFactory>()?.AsSingletonOf<ConfigSnapshotFactory>();
         }
 
         /// <inheritdoc />
@@ -83,7 +84,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<IConfigSnapshotProvider>()) registry.Register<IConfigSnapshotProvider>().AsSingletonOf<ConfigSnapshotProvider>();
+            registry.TryRegister<IConfigSnapshotProvider>()?.AsSingletonOf<ConfigSnapshotProvider>();
         }
 
         /// <inheritdoc />
@@ -91,7 +92,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<IPackageAggregator>()) registry.Register<IPackageAggregator>().AsSingletonOf<PackageAggregator>();
+            registry.TryRegister<IPackageAggregator>()?.AsSingletonOf<PackageAggregator>();
         }
 
         /// <inheritdoc />
@@ -99,7 +100,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<IPackagePublishDateDictionaryFactory>()) registry.Register<IPackagePublishDateDictionaryFactory>().AsSingletonOf<PackagePublishDateDictionaryFactory>();
+            registry.TryRegister<IPackagePublishDateDictionaryFactory>()?.AsSingletonOf<PackagePublishDateDictionaryFactory>();
         }
 
         /// <inheritdoc />
@@ -107,7 +108,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanGetInstanceOf<IPackageCleanupActionDecisionMaker>()) registry.Register<IPackageCleanupActionDecisionMaker>().AsSingletonOf<PackageCleanupActionDecisionMaker>();
+            registry.TryRegister<IPackageCleanupActionDecisionMaker>()?.AsSingletonOf<PackageCleanupActionDecisionMaker>();
         }
 
         /// <inheritdoc />
@@ -115,10 +116,10 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (registry == null) throw new ArgumentNullException(nameof(registry));
 
-            if (!registry.CanCreateInstanceOf<IPackageMetadata>()) registry.Register<IPackageMetadata>().AsInstancePerCallOf<PackageMetadata>();
-            if (!registry.CanCreateInstanceOf<IPackageAggregation>()) registry.Register<IPackageAggregation>().AsInstancePerCallOf<PackageAggregation>();
-            if (!registry.CanCreateInstanceOf<IVersionAggregation>()) registry.Register<IVersionAggregation>().AsInstancePerCallOf<VersionAggregation>();
-            if (!registry.CanCreateInstanceOf<IOriginalVersionAggregation>()) registry.Register<IOriginalVersionAggregation>().AsInstancePerCallOf<OriginalVersionAggregation>();
+            registry.TryRegister<IPackageMetadata>()?.AsInstancePerCallOf<PackageMetadata>();
+            registry.TryRegister<IPackageAggregation>()?.AsInstancePerCallOf<PackageAggregation>();
+            registry.TryRegister<IVersionAggregation>()?.AsInstancePerCallOf<VersionAggregation>();
+            registry.TryRegister<IOriginalVersionAggregation>()?.AsInstancePerCallOf<OriginalVersionAggregation>();
         }
     }
 }

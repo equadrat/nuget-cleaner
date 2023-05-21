@@ -25,13 +25,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="equadrat.Framework.Core" Version="6.0.0" />
-    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="6.0.0" />
-    <PackageReference Include="equadrat.Framework.Test" Version="6.0.0" />
-    <PackageReference Include="equadrat.Framework.Test.Interfaces" Version="6.0.0" />
-    <PackageReference Include="equadrat.Framework.Test.MSTest" Version="6.0.0" />
+    <PackageReference Include="equadrat.Framework.Core" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.DependencyInjection" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Test" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Test.Interfaces" Version="6.0.3" />
+    <PackageReference Include="equadrat.Framework.Test.MSTest" Version="6.0.3" />
     <PackageReference Include="JustMock" Version="2023.1.117.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
     <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">

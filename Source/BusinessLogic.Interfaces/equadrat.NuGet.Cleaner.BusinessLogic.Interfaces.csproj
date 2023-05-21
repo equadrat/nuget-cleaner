@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="6.0.0" />
+    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="6.0.3" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
