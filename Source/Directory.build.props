@@ -11,10 +11,8 @@
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <OutputPath>..\bin\$(Configuration)</OutputPath>
-  </PropertyGroup>
 
-  <PropertyGroup Condition="Exists('$(AssemblyOriginatorKeyFilePath)')">
-    <SignAssembly>True</SignAssembly>
+    <SignAssembly Condition="Exists('$(AssemblyOriginatorKeyFilePath)')">True</SignAssembly>
     <AssemblyOriginatorKeyFile>$(AssemblyOriginatorKeyFilePath)</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
