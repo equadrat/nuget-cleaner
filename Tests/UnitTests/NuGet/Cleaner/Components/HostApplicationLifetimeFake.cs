@@ -29,7 +29,7 @@ namespace e2.NuGet.Cleaner.Components
         /// <value>
         /// The application stop request wait handle.
         /// </value>
-        internal CoreSharedWaitHandle ApplicationStopRequestWaitHandle {get;}
+        internal CoreWaitHandle ApplicationStopRequestWaitHandle {get;}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HostApplicationLifetimeFake" /> class.
@@ -40,7 +40,7 @@ namespace e2.NuGet.Cleaner.Components
         {
             if (lockFactory == null) throw new ArgumentNullException(nameof(lockFactory));
 
-            this.ApplicationStopRequestWaitHandle = lockFactory.CreateSharedWaitHandle();
+            this.ApplicationStopRequestWaitHandle = lockFactory.CreateWaitHandle();
         }
 
         /// <inheritdoc />

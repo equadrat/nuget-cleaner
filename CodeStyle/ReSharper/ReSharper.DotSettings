@@ -337,7 +337,7 @@
 	
 	<s:Boolean x:Key="/Default/Environment/AssemblyExplorer/UseAssemblyExplorerByDefault/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/ContinuousTesting/ShowStatusBarIndicator/@EntryValue">False</s:Boolean>
-	<s:String x:Key="/Default/Environment/ExternalSources/NavigationMode/@EntryValue">ObjectBrowser</s:String>
+	
 	
 	
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingMode/@EntryValue">MarkersAndFullLine</s:String>
@@ -608,7 +608,6 @@
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31886FEC0986E34FBBA1C5AE176F526A/Shortcut/@EntryValue">tokenprop</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31886FEC0986E34FBBA1C5AE176F526A/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31886FEC0986E34FBBA1C5AE176F526A/Text/@EntryValue">#region property $PropertyName$&#xD;
-[JetBrains.Annotations.CanBeNull]&#xD;
 private $PropertyType$ $PropertyName$$END$&#xD;
 {&#xD;
   set&#xD;
@@ -632,7 +631,6 @@ private $PropertyType$ $PropertyName$$END$&#xD;
 /// The backing field of &lt;see cref="$PropertyName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.CanBeNull]&#xD;
 private $PropertyType$ _$PropertyVariableName$;&#xD;
 #endregion</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3DDB9C4A1D63B84C965F9B95E2408B5A/@KeyIndexDefined">True</s:Boolean>
@@ -662,7 +660,6 @@ private $PropertyType$ _$PropertyVariableName$;&#xD;
 /// The Definition of &lt;c&gt;$PropertyName$&lt;/c&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly Xamarin.Forms.BindableProperty $PropertyName$Property = Xamarin.Forms.BindableProperty.CreateAttached(&#xD;
     "$PropertyName$",&#xD;
     typeof($PropertyType$),&#xD;
@@ -679,8 +676,8 @@ public static readonly Xamarin.Forms.BindableProperty $PropertyName$Property = X
 /// The current value.&#xD;
 /// &lt;/returns&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;bindableObject&lt;/exception&gt;&#xD;
-[JetBrains.Annotations.Pure]&#xD;
-public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] Xamarin.Forms.BindableObject bindableObject)&#xD;
+[System.Diagnostics.Contracts.Pure]&#xD;
+public static $PropertyType$ Get$PropertyName$(Xamarin.Forms.BindableObject bindableObject)&#xD;
 {&#xD;
     if (bindableObject == null) throw new System.ArgumentNullException(nameof(bindableObject));&#xD;
     return ($PropertyType$)bindableObject.GetValue($PropertyName$Property);&#xD;
@@ -692,7 +689,7 @@ public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] X
 /// &lt;param name="bindableObject"&gt;The bindable object.&lt;/param&gt;&#xD;
 /// &lt;param name="value"&gt;The new value.&lt;/param&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;bindableObject&lt;/exception&gt;&#xD;
-public static void Set$PropertyName$([JetBrains.Annotations.NotNull] Xamarin.Forms.BindableObject bindableObject, $PropertyType$ value)&#xD;
+public static void Set$PropertyName$(Xamarin.Forms.BindableObject bindableObject, $PropertyType$ value)&#xD;
 {&#xD;
     if (bindableObject == null) throw new System.ArgumentNullException(nameof(bindableObject));&#xD;
     bindableObject.SetValue($PropertyName$Property, value);&#xD;
@@ -704,7 +701,7 @@ public static void Set$PropertyName$([JetBrains.Annotations.NotNull] Xamarin.For
 /// &lt;param name="bindableObject"&gt;The bindable object.&lt;/param&gt;&#xD;
 /// &lt;param name="oldValueObject"&gt;The old value.&lt;/param&gt;&#xD;
 /// &lt;param name="newValueObject"&gt;The new value.&lt;/param&gt;&#xD;
-private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] Xamarin.Forms.BindableObject bindableObject, object oldValueObject, object newValueObject)&#xD;
+private static void On$PropertyName$Changed(Xamarin.Forms.BindableObject bindableObject, object oldValueObject, object newValueObject)&#xD;
 {&#xD;
     var oldValue = ($PropertyType$)oldValueObject;&#xD;
     var newValue = ($PropertyType$)newValueObject;&#xD;
@@ -745,7 +742,6 @@ private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] Xama
 /// The definition of &lt;see cref="$PropertyName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly Avalonia.DirectProperty&lt;$CONTAININGTYPE$, $PropertyType$&gt; $PropertyName$Property = Avalonia.AvaloniaProperty.RegisterDirect&lt;$CONTAININGTYPE$, $PropertyType$&gt;(&#xD;
     nameof($PropertyName$), &#xD;
     x =&gt; x.$PropertyName$,&#xD;
@@ -814,8 +810,7 @@ public e2.Framework.Models.ICoreCommand $CommandName$$END$ =&gt; this._$commandN
 /// &lt;summary&gt;&#xD;
 /// The backing field of the &lt;see cref="$CommandName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
-[JetBrains.Annotations.CanBeNull]&#xD;
-private e2.Framework.Models.ICoreCommand _$commandName$;&#xD;
+private e2.Framework.Models.ICoreCommand? _$commandName$;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
 /// Determines whether the &lt;see cref="$CommandName$"/&gt; can execute.&#xD;
@@ -823,8 +818,7 @@ private e2.Framework.Models.ICoreCommand _$commandName$;&#xD;
 /// &lt;returns&gt;&#xD;
 /// A value indicating whether the &lt;see cref="$CommandName$" /&gt; can execute.&#xD;
 /// &lt;/returns&gt;&#xD;
-[JetBrains.Annotations.Pure]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
+[System.Diagnostics.Contracts.Pure]&#xD;
 private async System.Threading.Tasks.Task&lt;bool&gt; $CommandName$CanExecuteAsync(System.Threading.CancellationToken cancellationToken)&#xD;
 {&#xD;
   // TODO: $NAMESPACE$.$CONTAININGTYPE$.$CommandName$CanExecute&#xD;
@@ -837,7 +831,6 @@ private async System.Threading.Tasks.Task&lt;bool&gt; $CommandName$CanExecuteAsy
 /// &lt;returns&gt;&#xD;
 /// The state of the asynchronous process.&#xD;
 /// &lt;/returns&gt;&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 private async System.Threading.Tasks.Task $CommandName$ExecuteAsync()&#xD;
 {&#xD;
   // TODO: $NAMESPACE$.$CONTAININGTYPE$.$CommandName$Execute&#xD;
@@ -867,7 +860,6 @@ private async System.Threading.Tasks.Task $CommandName$ExecuteAsync()&#xD;
 /// The Definition of &lt;c&gt;$PropertyName$&lt;/c&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly Avalonia.AttachedProperty&lt;$PropertyType$&gt; $PropertyName$Property = Avalonia.AvaloniaProperty.RegisterAttached&lt;$CONTAININGTYPE$, $CONTAININGTYPE$, $PropertyType$&gt;(&#xD;
     "$PropertyName$",&#xD;
     default($PropertyType$),&#xD;
@@ -881,8 +873,8 @@ public static readonly Avalonia.AttachedProperty&lt;$PropertyType$&gt; $Property
 /// The current value.&#xD;
 /// &lt;/returns&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;avaloniaObject&lt;/exception&gt;&#xD;
-[JetBrains.Annotations.Pure]&#xD;
-public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] Avalonia.AvaloniaObject avaloniaObject)&#xD;
+[System.Diagnostics.Contracts.Pure]&#xD;
+public static $PropertyType$ Get$PropertyName$(Avalonia.AvaloniaObject avaloniaObject)&#xD;
 {&#xD;
     if (avaloniaObject == null) throw new System.ArgumentNullException(nameof(avaloniaObject));&#xD;
     return avaloniaObject.GetValue($PropertyName$Property);&#xD;
@@ -894,7 +886,7 @@ public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] A
 /// &lt;param name="avaloniaObject"&gt;The avalonia object.&lt;/param&gt;&#xD;
 /// &lt;param name="value"&gt;The new value.&lt;/param&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;avaloniaObject&lt;/exception&gt;&#xD;
-public static void Set$PropertyName$([JetBrains.Annotations.NotNull] Avalonia.AvaloniaObject avaloniaObject, $PropertyType$ value)&#xD;
+public static void Set$PropertyName$(Avalonia.AvaloniaObject avaloniaObject, $PropertyType$ value)&#xD;
 {&#xD;
     if (avaloniaObject == null) throw new System.ArgumentNullException(nameof(avaloniaObject));&#xD;
     avaloniaObject.SetValue($PropertyName$Property, value);&#xD;
@@ -964,7 +956,6 @@ public static void Set$PropertyName$([JetBrains.Annotations.NotNull] Avalonia.Av
 /// The definition of &lt;see cref="$PropertyName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly Xamarin.Forms.BindableProperty $PropertyName$Property = Xamarin.Forms.BindableProperty.Create(&#xD;
     nameof($PropertyName$),&#xD;
     typeof($PropertyType$),&#xD;
@@ -986,7 +977,7 @@ public $PropertyType$ $PropertyName$$END$&#xD;
 /// &lt;param name="bindableObject"&gt;The bindable object.&lt;/param&gt;&#xD;
 /// &lt;param name="oldValueObject"&gt;The old value.&lt;/param&gt;&#xD;
 /// &lt;param name="newValueObject"&gt;The new value.&lt;/param&gt;&#xD;
-private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] Xamarin.Forms.BindableObject bindableObject, object oldValueObject, object newValueObject)&#xD;
+private static void On$PropertyName$Changed(Xamarin.Forms.BindableObject bindableObject, object oldValueObject, object newValueObject)&#xD;
 {&#xD;
     if (!(bindableObject is $CONTAININGTYPE$ sender)) return;&#xD;
 &#xD;
@@ -1096,8 +1087,7 @@ public e2.Framework.Models.ICoreCommand $CommandName$$END$ =&gt; this._$commandN
 /// &lt;summary&gt;&#xD;
 /// The backing field of the &lt;see cref="$CommandName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
-[JetBrains.Annotations.CanBeNull]&#xD;
-private e2.Framework.Models.ICoreCommand _$commandName$;&#xD;
+private e2.Framework.Models.ICoreCommand? _$commandName$;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
 /// Determines whether the &lt;see cref="$CommandName$"/&gt; can execute.&#xD;
@@ -1105,7 +1095,7 @@ private e2.Framework.Models.ICoreCommand _$commandName$;&#xD;
 /// &lt;returns&gt;&#xD;
 /// A value indicating whether the &lt;see cref="$CommandName$" /&gt; can execute.&#xD;
 /// &lt;/returns&gt;&#xD;
-[JetBrains.Annotations.Pure]&#xD;
+[System.Diagnostics.Contracts.Pure]&#xD;
 private bool $CommandName$CanExecute()&#xD;
 {&#xD;
   // TODO: $NAMESPACE$.$CONTAININGTYPE$.$CommandName$CanExecute&#xD;
@@ -1151,7 +1141,6 @@ private void $CommandName$Execute()&#xD;
 /// The Definition of &lt;c&gt;$PropertyName$&lt;/c&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 private static readonly Xamarin.Forms.BindablePropertyKey _$propertyName$Property = Xamarin.Forms.BindableProperty.CreateAttachedReadOnly(&#xD;
     "$PropertyName$",&#xD;
     typeof($PropertyType$),&#xD;
@@ -1164,7 +1153,6 @@ private static readonly Xamarin.Forms.BindablePropertyKey _$propertyName$Propert
 /// The Definition of &lt;c&gt;$PropertyName$&lt;/c&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly Xamarin.Forms.BindableProperty $PropertyName$Property = _$propertyName$Property.BindableProperty;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
@@ -1175,8 +1163,8 @@ public static readonly Xamarin.Forms.BindableProperty $PropertyName$Property = _
 /// The current value.&#xD;
 /// &lt;/returns&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;bindableObject&lt;/exception&gt;&#xD;
-[JetBrains.Annotations.Pure]&#xD;
-public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] Xamarin.Forms.BindableObject bindableObject)&#xD;
+[System.Diagnostics.Contracts.Pure]&#xD;
+public static $PropertyType$ Get$PropertyName$(Xamarin.Forms.BindableObject bindableObject)&#xD;
 {&#xD;
     if (bindableObject == null) throw new System.ArgumentNullException(nameof(bindableObject));&#xD;
     return ($PropertyType$)bindableObject.GetValue($PropertyName$Property);&#xD;
@@ -1188,7 +1176,7 @@ public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] X
 /// &lt;param name="bindableObject"&gt;The bindable object.&lt;/param&gt;&#xD;
 /// &lt;param name="value"&gt;The new value.&lt;/param&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;bindableObject&lt;/exception&gt;&#xD;
-private static void Set$PropertyName$([JetBrains.Annotations.NotNull] Xamarin.Forms.BindableObject bindableObject, $PropertyType$ value)&#xD;
+private static void Set$PropertyName$(Xamarin.Forms.BindableObject bindableObject, $PropertyType$ value)&#xD;
 {&#xD;
     if (bindableObject == null) throw new System.ArgumentNullException(nameof(bindableObject));&#xD;
     bindableObject.SetValue(_$propertyName$Property, value);&#xD;
@@ -1200,7 +1188,7 @@ private static void Set$PropertyName$([JetBrains.Annotations.NotNull] Xamarin.Fo
 /// &lt;param name="bindableObject"&gt;The bindable object.&lt;/param&gt;&#xD;
 /// &lt;param name="oldValueObject"&gt;The old value.&lt;/param&gt;&#xD;
 /// &lt;param name="newValueObject"&gt;The new value.&lt;/param&gt;&#xD;
-private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] Xamarin.Forms.BindableObject bindableObject, object oldValueObject, object newValueObject)&#xD;
+private static void On$PropertyName$Changed(Xamarin.Forms.BindableObject bindableObject, object oldValueObject, object newValueObject)&#xD;
 {&#xD;
     var oldValue = ($PropertyType$)oldValueObject;&#xD;
     var newValue = ($PropertyType$)newValueObject;&#xD;
@@ -1242,7 +1230,6 @@ private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] Xama
 /// The definition of &lt;see cref="$PropertyName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly Avalonia.DirectProperty&lt;$CONTAININGTYPE$, $PropertyType$&gt; $PropertyName$Property = Avalonia.AvaloniaProperty.RegisterDirect&lt;$CONTAININGTYPE$, $PropertyType$&gt;(&#xD;
     nameof($PropertyName$), &#xD;
     x =&gt; x.$PropertyName$,&#xD;
@@ -1315,7 +1302,6 @@ private void On$PropertyName$Changed($PropertyType$ oldValue, $PropertyType$ new
 /// The definition of &lt;see cref="$PropertyName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 private static readonly Xamarin.Forms.BindablePropertyKey _$propertyName$Property = Xamarin.Forms.BindableProperty.CreateReadOnly(&#xD;
     nameof($PropertyName$), &#xD;
     typeof($PropertyType$), &#xD;
@@ -1328,7 +1314,6 @@ private static readonly Xamarin.Forms.BindablePropertyKey _$propertyName$Propert
 /// The definition of &lt;see cref="$PropertyName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly Xamarin.Forms.BindableProperty $PropertyName$Property = _$propertyName$Property.BindableProperty;&#xD;
 &#xD;
 [System.ComponentModel.Bindable(true)]&#xD;
@@ -1344,7 +1329,7 @@ public $PropertyType$ $PropertyName$$END$&#xD;
 /// &lt;param name="bindableObject"&gt;The bindable object.&lt;/param&gt;&#xD;
 /// &lt;param name="oldValueObject"&gt;The old value.&lt;/param&gt;&#xD;
 /// &lt;param name="newValueObject"&gt;The new value.&lt;/param&gt;&#xD;
-private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] Xamarin.Forms.BindableObject bindableObject, object oldValueObject, object newValueObject)&#xD;
+private static void On$PropertyName$Changed(Xamarin.Forms.BindableObject bindableObject, object oldValueObject, object newValueObject)&#xD;
 {&#xD;
     if (!(bindableObject is $CONTAININGTYPE$ sender)) return;&#xD;
 &#xD;
@@ -1550,7 +1535,6 @@ private void On$PropertyName$Changed($PropertyType$ oldValue, $PropertyType$ new
 /// The definition of &lt;see cref="$EVENTNAME$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [DebuggerBrowsable(DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly RoutedEvent $EVENTNAME$Event = System.Windows.EventManager.RegisterRoutedEvent(&#xD;
   "$EVENTNAME$",&#xD;
   $ROUTINGSTRATEGY$,&#xD;
@@ -1567,7 +1551,7 @@ public event $EVENTHANDLERTYPE$ $EVENTNAME$$END$&#xD;
 /// Raises the &lt;see cref="E:$EVENTNAME$" /&gt; event.&#xD;
 /// &lt;/summary&gt;&#xD;
 /// &lt;param name="e"&gt;The &lt;see cref="$EVENTARGSTYPE$"/&gt; instance containing the event data.&lt;/param&gt;&#xD;
-protected virtual void On$EVENTNAME$([JetBrains.Annotations.NotNull] $EVENTARGSTYPE$ e)&#xD;
+protected virtual void On$EVENTNAME$($EVENTARGSTYPE$ e)&#xD;
 {&#xD;
   e.RoutedEvent = $EVENTNAME$Event;&#xD;
   this.RaiseEvent(e);&#xD;
@@ -1714,7 +1698,6 @@ protected virtual void On$EVENTNAME$([JetBrains.Annotations.NotNull] $EVENTARGST
 /// The Definition of &lt;c&gt;$PropertyName$&lt;/c&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly System.Windows.DependencyProperty $PropertyName$Property = System.Windows.DependencyProperty.RegisterAttached(&#xD;
     "$PropertyName$",&#xD;
     typeof($PropertyType$),&#xD;
@@ -1729,8 +1712,8 @@ public static readonly System.Windows.DependencyProperty $PropertyName$Property 
 /// The current value.&#xD;
 /// &lt;/returns&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;dependencyObject&lt;/exception&gt;&#xD;
-[JetBrains.Annotations.Pure]&#xD;
-public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] System.Windows.DependencyObject dependencyObject)&#xD;
+[System.Diagnostics.Contracts.Pure]&#xD;
+public static $PropertyType$ Get$PropertyName$(System.Windows.DependencyObject dependencyObject)&#xD;
 {&#xD;
     if (dependencyObject == null) throw new System.ArgumentNullException(nameof(dependencyObject));&#xD;
     return ($PropertyType$)dependencyObject.GetValue($PropertyName$Property);&#xD;
@@ -1742,7 +1725,7 @@ public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] S
 /// &lt;param name="dependencyObject"&gt;The dependency object.&lt;/param&gt;&#xD;
 /// &lt;param name="value"&gt;The new value.&lt;/param&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;dependencyObject&lt;/exception&gt;&#xD;
-public static void Set$PropertyName$([JetBrains.Annotations.NotNull] System.Windows.DependencyObject dependencyObject, $PropertyType$ value)&#xD;
+public static void Set$PropertyName$(System.Windows.DependencyObject dependencyObject, $PropertyType$ value)&#xD;
 {&#xD;
     if (dependencyObject == null) throw new System.ArgumentNullException(nameof(dependencyObject));&#xD;
     dependencyObject.SetValue($PropertyName$Property, value);&#xD;
@@ -1753,7 +1736,7 @@ public static void Set$PropertyName$([JetBrains.Annotations.NotNull] System.Wind
 /// &lt;/summary&gt;&#xD;
 /// &lt;param name="dependencyObject"&gt;The dependency object.&lt;/param&gt;&#xD;
 /// &lt;param name="e"&gt;The &lt;see cref="System.Windows.DependencyPropertyChangedEventArgs" /&gt; instance containing the event data.&lt;/param&gt;&#xD;
-private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] System.Windows.DependencyObject dependencyObject, System.Windows.DependencyPropertyChangedEventArgs e)&#xD;
+private static void On$PropertyName$Changed(System.Windows.DependencyObject dependencyObject, System.Windows.DependencyPropertyChangedEventArgs e)&#xD;
 {&#xD;
     var oldValue = ($PropertyType$)e.OldValue;&#xD;
     var newValue = ($PropertyType$)e.NewValue;&#xD;
@@ -1796,7 +1779,6 @@ private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] Syst
 /// The definition of &lt;see cref="$PropertyName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 private static readonly System.Windows.DependencyPropertyKey _$propertyName$Property = System.Windows.DependencyProperty.RegisterReadOnly(&#xD;
     nameof($PropertyName$), &#xD;
     typeof($PropertyType$), &#xD;
@@ -1807,7 +1789,6 @@ private static readonly System.Windows.DependencyPropertyKey _$propertyName$Prop
 /// The definition of &lt;see cref="$PropertyName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly System.Windows.DependencyProperty $PropertyName$Property = _$propertyName$Property.DependencyProperty;&#xD;
 &#xD;
 [System.ComponentModel.Bindable(true)]&#xD;
@@ -1822,7 +1803,7 @@ public $PropertyType$ $PropertyName$$END$&#xD;
 /// &lt;/summary&gt;&#xD;
 /// &lt;param name="dependencyObject"&gt;The dependency object.&lt;/param&gt;&#xD;
 /// &lt;param name="e"&gt;The &lt;see cref="System.Windows.DependencyPropertyChangedEventArgs" /&gt; instance containing the event data.&lt;/param&gt;&#xD;
-private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] System.Windows.DependencyObject dependencyObject, System.Windows.DependencyPropertyChangedEventArgs e)&#xD;
+private static void On$PropertyName$Changed(System.Windows.DependencyObject dependencyObject, System.Windows.DependencyPropertyChangedEventArgs e)&#xD;
 {&#xD;
     if (!(dependencyObject is $CONTAININGTYPE$ sender)) return;&#xD;
 &#xD;
@@ -1905,7 +1886,6 @@ private void On$PropertyName$Changed($PropertyType$ oldValue, $PropertyType$ new
 /// The Definition of &lt;c&gt;$PropertyName$&lt;/c&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 private static readonly System.Windows.DependencyPropertyKey _$propertyName$Property = System.Windows.DependencyProperty.RegisterAttachedReadOnly(&#xD;
     "$PropertyName$",&#xD;
     typeof($PropertyType$),&#xD;
@@ -1916,7 +1896,6 @@ private static readonly System.Windows.DependencyPropertyKey _$propertyName$Prop
 /// The Definition of &lt;c&gt;$PropertyName$&lt;/c&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly System.Windows.DependencyProperty $PropertyName$Property = _$propertyName$Property.DependencyProperty;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
@@ -1927,8 +1906,8 @@ public static readonly System.Windows.DependencyProperty $PropertyName$Property 
 /// The current value.&#xD;
 /// &lt;/returns&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;dependencyObject&lt;/exception&gt;&#xD;
-[JetBrains.Annotations.Pure]&#xD;
-public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] System.Windows.DependencyObject dependencyObject)&#xD;
+[System.Diagnostics.Contracts.Pure]&#xD;
+public static $PropertyType$ Get$PropertyName$(System.Windows.DependencyObject dependencyObject)&#xD;
 {&#xD;
     if (dependencyObject == null) throw new System.ArgumentNullException(nameof(dependencyObject));&#xD;
     return ($PropertyType$)dependencyObject.GetValue($PropertyName$Property);&#xD;
@@ -1940,7 +1919,7 @@ public static $PropertyType$ Get$PropertyName$([JetBrains.Annotations.NotNull] S
 /// &lt;param name="dependencyObject"&gt;The dependency object.&lt;/param&gt;&#xD;
 /// &lt;param name="value"&gt;The new value.&lt;/param&gt;&#xD;
 /// &lt;exception cref="System.ArgumentNullException"&gt;dependencyObject&lt;/exception&gt;&#xD;
-private static void Set$PropertyName$([JetBrains.Annotations.NotNull] System.Windows.DependencyObject dependencyObject, $PropertyType$ value)&#xD;
+private static void Set$PropertyName$(System.Windows.DependencyObject dependencyObject, $PropertyType$ value)&#xD;
 {&#xD;
     if (dependencyObject == null) throw new System.ArgumentNullException(nameof(dependencyObject));&#xD;
     dependencyObject.SetValue(_$propertyName$Property, value);&#xD;
@@ -1951,7 +1930,7 @@ private static void Set$PropertyName$([JetBrains.Annotations.NotNull] System.Win
 /// &lt;/summary&gt;&#xD;
 /// &lt;param name="dependencyObject"&gt;The dependency object.&lt;/param&gt;&#xD;
 /// &lt;param name="e"&gt;The &lt;see cref="System.Windows.DependencyPropertyChangedEventArgs" /&gt; instance containing the event data.&lt;/param&gt;&#xD;
-private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] System.Windows.DependencyObject dependencyObject, System.Windows.DependencyPropertyChangedEventArgs e)&#xD;
+private static void On$PropertyName$Changed(System.Windows.DependencyObject dependencyObject, System.Windows.DependencyPropertyChangedEventArgs e)&#xD;
 {&#xD;
     var oldValue = ($PropertyType$)e.OldValue;&#xD;
     var newValue = ($PropertyType$)e.NewValue;&#xD;
@@ -1990,7 +1969,6 @@ private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] Syst
 /// The definition of &lt;see cref="$PropertyName$" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public static readonly System.Windows.DependencyProperty $PropertyName$Property = System.Windows.DependencyProperty.Register(&#xD;
     nameof($PropertyName$), &#xD;
     typeof($PropertyType$), &#xD;
@@ -2009,7 +1987,7 @@ public $PropertyType$ $PropertyName$$END$&#xD;
 /// &lt;/summary&gt;&#xD;
 /// &lt;param name="dependencyObject"&gt;The dependency object.&lt;/param&gt;&#xD;
 /// &lt;param name="e"&gt;The &lt;see cref="System.Windows.DependencyPropertyChangedEventArgs" /&gt; instance containing the event data.&lt;/param&gt;&#xD;
-private static void On$PropertyName$Changed([JetBrains.Annotations.NotNull] System.Windows.DependencyObject dependencyObject, System.Windows.DependencyPropertyChangedEventArgs e)&#xD;
+private static void On$PropertyName$Changed(System.Windows.DependencyObject dependencyObject, System.Windows.DependencyPropertyChangedEventArgs e)&#xD;
 {&#xD;
     if (!(dependencyObject is $CONTAININGTYPE$ sender)) return;&#xD;
 &#xD;
@@ -2117,7 +2095,6 @@ private void $PROPERTYNAME$Changed($PROPERTYTYPE$ OldValue, $PROPERTYTYPE$ NewVa
 /// The property definition of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
 /// &lt;/value&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public IMvvmPropertyDefinition&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; $PROPERTYNAME$PropertyDefinition =&gt; this._$propertyNAME$PropertyDefinition ??= this.DataContainer.RegisterProperty(&#xD;
     static vm =&gt; vm.$PROPERTYNAME$,&#xD;
     options =&gt; options.HandlePropertyChanged(static vm =&gt; vm.On$PROPERTYNAME$Changed));&#xD;
@@ -2133,8 +2110,7 @@ public $PROPERTYTYPE$ $PROPERTYNAME$$END$&#xD;
 /// &lt;summary&gt;&#xD;
 /// The backing field of &lt;see cref="$PROPERTYNAME$PropertyDefinition" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
-[JetBrains.Annotations.CanBeNull]&#xD;
-private IMvvmPropertyDefinition&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; _$propertyNAME$PropertyDefinition;&#xD;
+private IMvvmPropertyDefinition&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt;? _$propertyNAME$PropertyDefinition;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
 /// Gets the property slot of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
@@ -2143,14 +2119,12 @@ private IMvvmPropertyDefinition&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; _$proper
 /// The property slot of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
 /// &lt;/value&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 private IMvvmPropertySlot&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; $PROPERTYNAME$PropertySlot =&gt; this._$propertyNAME$PropertySlot ??= this.DataContainer.GetSlot(this.$PROPERTYNAME$PropertyDefinition);&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
 /// The backing field of &lt;see cref="$PROPERTYNAME$PropertySlot" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
-[JetBrains.Annotations.CanBeNull]&#xD;
-private IMvvmPropertySlot&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; _$propertyNAME$PropertySlot;&#xD;
+private IMvvmPropertySlot&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt;? _$propertyNAME$PropertySlot;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
 /// Gets the property state of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
@@ -2159,7 +2133,6 @@ private IMvvmPropertySlot&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; _$propertyNAME
 /// The property state of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
 /// &lt;/value&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public IMvvmPropertyState&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; $PROPERTYNAME$PropertyState =&gt; this.$PROPERTYNAME$PropertySlot.State;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
@@ -2334,9 +2307,6 @@ private void $PROPERTYNAME$Changed($PROPERTYTYPE$ OldValue, $PROPERTYTYPE$ NewVa
     /// &lt;summary&gt;&#xD;
     /// TODO: $NAMESPACE$.$TYPENAME$&#xD;
     /// &lt;/summary&gt;&#xD;
-#if !DEBUG&#xD;
-    [DebuggerStepThrough]&#xD;
-#endif&#xD;
     [System.CLSCompliant(ProductAssemblyInfo.ClsCompliant)]&#xD;
     public class $TYPENAME$: System.Windows.Controls.Control&#xD;
     {&#xD;
@@ -2450,7 +2420,6 @@ private void On$PropertyName$Changed($PropertyType$ oldValue, $PropertyType$ new
 /// The property definition of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
 /// &lt;/value&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public IMvvmPropertyDefinition&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; $PROPERTYNAME$PropertyDefinition =&gt; this._$propertyNAME$PropertyDefinition ??= this.DataContainer.RegisterProperty(&#xD;
     static vm =&gt; vm.$PROPERTYNAME$,&#xD;
     options =&gt; options.HasModelProperty(this.$MODELPROPERTY$, static m =&gt; m.$MODELPROPERTYNAME$)&#xD;
@@ -2467,8 +2436,7 @@ public $PROPERTYTYPE$ $PROPERTYNAME$$END$&#xD;
 /// &lt;summary&gt;&#xD;
 /// The backing field of &lt;see cref="$PROPERTYNAME$PropertyDefinition" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
-[JetBrains.Annotations.CanBeNull]&#xD;
-private IMvvmPropertyDefinition&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; _$propertyNAME$PropertyDefinition;&#xD;
+private IMvvmPropertyDefinition&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt;? _$propertyNAME$PropertyDefinition;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
 /// Gets the property slot of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
@@ -2477,14 +2445,12 @@ private IMvvmPropertyDefinition&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; _$proper
 /// The property slot of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
 /// &lt;/value&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 private IMvvmPropertySlot&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; $PROPERTYNAME$PropertySlot =&gt; this._$propertyNAME$PropertySlot ??= this.DataContainer.GetSlot(this.$PROPERTYNAME$PropertyDefinition);&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
 /// The backing field of &lt;see cref="$PROPERTYNAME$PropertySlot" /&gt;.&#xD;
 /// &lt;/summary&gt;&#xD;
-[JetBrains.Annotations.CanBeNull]&#xD;
-private IMvvmPropertySlot&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; _$propertyNAME$PropertySlot;&#xD;
+private IMvvmPropertySlot&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt;? _$propertyNAME$PropertySlot;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;
 /// Gets the property state of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
@@ -2493,7 +2459,6 @@ private IMvvmPropertySlot&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; _$propertyNAME
 /// The property state of &lt;see cref="$PROPERTYNAME$" /&gt;.&#xD;
 /// &lt;/value&gt;&#xD;
 [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]&#xD;
-[JetBrains.Annotations.NotNull]&#xD;
 public IMvvmPropertyState&lt;$CONTAININGTYPE$, $PROPERTYTYPE$&gt; $PROPERTYNAME$PropertyState =&gt; this.$PROPERTYNAME$PropertySlot.State;&#xD;
 &#xD;
 /// &lt;summary&gt;&#xD;

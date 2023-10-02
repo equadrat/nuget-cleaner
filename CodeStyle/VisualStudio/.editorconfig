@@ -184,6 +184,7 @@ resharper_place_simple_accessor_on_single_line = false
 resharper_place_simple_anonymousmethod_on_single_line = false
 resharper_place_simple_case_statement_on_same_line = true
 resharper_place_simple_embedded_statement_on_same_line = true
+resharper_qualified_using_at_nested_scope = true
 resharper_space_after_cast = false
 resharper_space_around_arrow_op = true
 resharper_space_around_binary_operator = true
@@ -247,6 +248,7 @@ resharper_merge_conditional_expression_highlighting = none
 resharper_move_variable_declaration_inside_loop_condition_highlighting = none
 resharper_not_accessed_field_global_highlighting = none
 resharper_not_null_member_is_not_initialized_highlighting = none
+resharper_property_can_be_made_init_only_global_highlighting = none
 resharper_static_member_in_generic_type_highlighting = none
 resharper_string_literal_typo_highlighting = none
 resharper_suggest_var_or_type_built_in_types_highlighting = hint
@@ -272,6 +274,11 @@ indent_size = 4
 tab_width = 4
 
 [*.{asax,ascx,aspx,axaml,c,c++,cc,cginc,compute,cp,cpp,cs,cshtml,css,cu,cuh,cxx,fx,fxh,h,hh,hlsl,hlsli,hlslinc,hpp,htm,html,hxx,inc,inl,ino,ipp,ixx,master,mpp,mq4,mq5,mqh,paml,razor,skin,tpp,usf,ush,vb,xaml,xamlx,xoml}]
+indent_style = space
+indent_size = 4
+tab_width = 4
+
+[*.{asax,ascx,aspx,axaml,c,c++,cc,cginc,compute,cp,cpp,cppm,cs,cshtml,cu,cuh,cxx,fx,fxh,h,hh,hlsl,hlsli,hlslinc,hpp,htm,html,hxx,inc,inl,ino,ipp,ixx,master,mpp,mq4,mq5,mqh,paml,razor,skin,tpp,usf,ush,vb,xaml,xamlx,xoml}]
 indent_style = space
 indent_size = 4
 tab_width = 4

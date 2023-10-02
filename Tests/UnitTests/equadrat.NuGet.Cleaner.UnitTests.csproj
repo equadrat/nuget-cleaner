@@ -25,17 +25,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="equadrat.Framework.Core" Version="6.0.6" />
-    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="6.0.6" />
-    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.DependencyInjection" Version="6.0.6" />
-    <PackageReference Include="equadrat.Framework.Test" Version="6.0.3" />
-    <PackageReference Include="equadrat.Framework.Test.Interfaces" Version="6.0.3" />
-    <PackageReference Include="equadrat.Framework.Test.MSTest" Version="6.0.3" />
-    <PackageReference Include="JustMock" Version="2023.2.601.35" />
+    <PackageReference Include="equadrat.Framework.Core" Version="6.3.0" />
+    <PackageReference Include="equadrat.Framework.Core.Interfaces" Version="6.3.0" />
+    <PackageReference Include="equadrat.Framework.Core.Microsoft.Extensions.DependencyInjection" Version="6.3.0" />
+    <PackageReference Include="equadrat.Framework.Test" Version="6.3.0" />
+    <PackageReference Include="equadrat.Framework.Test.Interfaces" Version="6.3.0" />
+    <PackageReference Include="equadrat.Framework.Test.MSTest" Version="6.3.0" />
+    <PackageReference Include="JustMock" Version="2023.2.719.137" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.2" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
